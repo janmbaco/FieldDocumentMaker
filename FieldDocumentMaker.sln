@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldDocumentMaker.Library", "FieldDocumentMaker.Library\FieldDocumentMaker.Library.csproj", "{3944E443-049D-4345-9DE3-EBB860EA193B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldDocumentMaker.AppTest", "FieldDocumentMaker.AppTest\FieldDocumentMaker.AppTest.csproj", "{1FCDB3BB-231C-4D9E-9931-97088964F439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldDocumentMaker.WPF", "FieldDocumentMaker.WPF\FieldDocumentMaker.WPF.csproj", "{4E051879-0EA9-453D-BF8D-832428E67AA7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{79D995C7-3D41-4194-8CFF-E5F6F5094872} = {79D995C7-3D41-4194-8CFF-E5F6F5094872}
+	EndProjectSection
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "FieldDocumentMaker.HtmlCanvas", "FieldDocumentMaker.HtmlCanvas\FieldDocumentMaker.HtmlCanvas.njsproj", "{79D995C7-3D41-4194-8CFF-E5F6F5094872}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3944E443-049D-4345-9DE3-EBB860EA193B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3944E443-049D-4345-9DE3-EBB860EA193B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3944E443-049D-4345-9DE3-EBB860EA193B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3944E443-049D-4345-9DE3-EBB860EA193B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FCDB3BB-231C-4D9E-9931-97088964F439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCDB3BB-231C-4D9E-9931-97088964F439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FCDB3BB-231C-4D9E-9931-97088964F439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FCDB3BB-231C-4D9E-9931-97088964F439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E051879-0EA9-453D-BF8D-832428E67AA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E051879-0EA9-453D-BF8D-832428E67AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E051879-0EA9-453D-BF8D-832428E67AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E051879-0EA9-453D-BF8D-832428E67AA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D995C7-3D41-4194-8CFF-E5F6F5094872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D995C7-3D41-4194-8CFF-E5F6F5094872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D995C7-3D41-4194-8CFF-E5F6F5094872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D995C7-3D41-4194-8CFF-E5F6F5094872}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88555EAD-0835-42E5-A5D0-CF2A0FA0F680}
+	EndGlobalSection
+EndGlobal
