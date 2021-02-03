@@ -1,3 +1,4 @@
+
 import { Autobind } from '../decorators/autobind';
 import {  DragTarget } from '../shared/drag-drop'
 import { ParagraphViewModel } from './paragraphs/paragraph.viewmodel';
@@ -18,6 +19,15 @@ export class Editor implements DragTarget{
         this.editorView.addEventListener('dragover', this.dragOverHandler)
         this.editorView.addEventListener('dragleave', this.dragLeaveHandler)
         this.editorView.addEventListener('drop', this.dropHandler)
+        this.editorView.addEventListener("DOMNodeInserted", e  => {
+            const event = e as MutationEvent;
+            const target = e.target as HTMLElement;
+            if (target.parentElement === this.editorView && target.nodeName === "P" ) {
+                this.paragraphs.push(new ParagraphViewModel(target as HTMLTemplateElement))
+            }
+
+        })
+        
     }
 
     @Autobind

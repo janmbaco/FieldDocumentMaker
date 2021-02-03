@@ -1,33 +1,30 @@
+import './paragraphs.style.css'
 import { Autobind } from '../../decorators/autobind';
 import { Draggable } from '../../shared/drag-drop';
 import { Guid } from 'guid-typescript';
+import Quill from 'quill';
 
 export class ParagraphViewModel implements Draggable{
 
     paragraphView: HTMLTemplateElement
-    onClickAction: () => void
     id: Guid
 
-    // "//@id=`editor-container`/@class=`ql-editor`/p:last()"
-    constructor(paragraphView: HTMLTemplateElement, onClickAction: () => void ){
+    constructor(paragraphView: HTMLTemplateElement) {
         this.paragraphView = paragraphView;
+        const child = document.createElement("img");
+        child.classList.add("movible")
+        child.textContent = " "
+        child.contentEditable = "false"
+        this.paragraphView.appendChild(child);
         this.id = Guid.create()
-        this.onClickAction = onClickAction
         this.paragraphView.addEventListener('dragstart', this.dragStartHandler)
         this.paragraphView.addEventListener('dragend', this.dragEndHandler)
-        this.paragraphView.addEventListener('click', _ => { 
-            onClickAction()
-            this.paragraphView.contentEditable = "true"
-         }),
-        this.paragraphView.addEventListener('focusin', _ => this.paragraphView.contentEditable = "true"),
-        this.paragraphView.addEventListener('focusout', _ => this.paragraphView.contentEditable = "false"),
         this.paragraphView.draggable = true
-        this.paragraphView.contentEditable = "false"
+        this.paragraphView.contentEditable = "true"
     }
 
     @Autobind
     dragStartHandler(event: DragEvent): void {
-        this.onClickAction()
         event.dataTransfer!.setData('text/plain', this.id.toString()) // copy data to dragging item
         event.dataTransfer!.effectAllowed = 'move' // we want to move data/item
     }
