@@ -1,6 +1,5 @@
 import '../node_modules/quill/dist/quill.snow.css';
 import { ParagraphQuillModule, ParagraphOptions } from './components/paragraphs/paragraph.module';
-import {  Quill  } from './shared/quill';
 import { Editor } from './components/editor';
 import { ParagraphViewModel } from './components/paragraphs/paragraph.viewmodel';
 import { getElementsByXPath } from './shared/document.extensions';
@@ -11,7 +10,7 @@ const ParagraphsActions: ParagraphCommands = new ParagraphCommands(ParagraphArra
 
 Quill.register('modules/paragraph', ParagraphQuillModule)
 
-new Quill('#editor-container', {
+const quill = new Quill('#editor-container', {
     modules: {
         toolbar: false,
         paragraph: new ParagraphOptions(ParagraphArray, ParagraphsActions.onClickAction)

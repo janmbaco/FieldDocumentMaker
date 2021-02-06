@@ -15,7 +15,11 @@
             <TreeView DockPanel.Dock="Left" MinWidth="150" x:Name="treeview" ItemsSource="{Binding TreeBranchVM}"  >
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type Tree:TreeBranchVM}" ItemsSource="{Binding Children}">
-                        <TextBlock Text="{Binding Value}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding PropertyName}"  />
+                            <TextBlock Text=": " />
+                            <TextBlock Text="{Binding Value}" />
+                        </StackPanel>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>

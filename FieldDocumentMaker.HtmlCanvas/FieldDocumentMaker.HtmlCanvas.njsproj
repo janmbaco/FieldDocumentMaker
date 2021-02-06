@@ -36,6 +36,9 @@
     <Content Include="src\app.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\editor\editor.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\paragraphs\paragraphs.style.css" />
     <Content Include="webpack.config.js">
       <SubType>Code</SubType>
@@ -46,21 +49,19 @@
     <Folder Include="src\" />
     <Folder Include="src\actions\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\components\editor\" />
     <Folder Include="src\components\paragraphs\" />
     <Folder Include="src\decorators\" />
     <Folder Include="src\shared\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\components\editor.ts" />
+    <TypeScriptCompile Include="src\components\editor\editor.ts" />
     <TypeScriptCompile Include="src\components\paragraphs\paragraph.command.ts" />
     <TypeScriptCompile Include="src\components\paragraphs\paragraph.module.ts" />
     <TypeScriptCompile Include="src\components\paragraphs\paragraph.viewmodel.ts" />
     <TypeScriptCompile Include="src\decorators\autobind.ts" />
     <TypeScriptCompile Include="src\shared\document.extensions.ts" />
     <TypeScriptCompile Include="src\shared\drag-drop.ts" />
-    <TypeScriptCompile Include="src\shared\quill.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

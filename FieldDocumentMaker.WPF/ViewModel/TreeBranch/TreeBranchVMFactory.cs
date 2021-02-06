@@ -23,7 +23,7 @@ namespace FieldDocumentMaker.WPF.ViewModel.TreeBranch
 
         public TreeBranchVM CreateVM(EntityBranch entity)
         {
-            string value = entity.Name;
+            string name = entity.Name;
             List<TreeBranchVM> children = new List<TreeBranchVM>();
 
             foreach (EntityLeaf branch in entity.Leaves)
@@ -35,12 +35,12 @@ namespace FieldDocumentMaker.WPF.ViewModel.TreeBranch
                 children.Add(this.CreateVM(branch));
             }
 
-            return new TreeBranchVM(value, children);
+            return new TreeBranchVM(name, null, children);
         }
 
         public TreeBranchVM CreateVM(EntityLeaf entity)
         {
-            return new TreeBranchVM(entity.Name, new List<TreeBranchVM>());
+            return new TreeBranchVM(entity.Name, entity.Value, new List<TreeBranchVM>());
 
         }
 
