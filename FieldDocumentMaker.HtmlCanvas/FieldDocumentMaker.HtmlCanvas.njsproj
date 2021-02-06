@@ -30,16 +30,13 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="src\app.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="src\app.html">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="src\components\editor\editor.html">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="src\components\paragraphs\paragraphs.style.css" />
+    <Content Include="src\app.html" />
+    <Content Include="src\components\editor\editor-style.css" />
+    <Content Include="src\components\editor\editor-template.html" />
+    <Content Include="src\components\paragraph\paragraph-style.css" />
+    <Content Include="src\components\paragraph\paragraph-template.html" />
     <Content Include="webpack.config.js">
       <SubType>Code</SubType>
     </Content>
@@ -50,16 +47,19 @@
     <Folder Include="src\actions\" />
     <Folder Include="src\components\" />
     <Folder Include="src\components\editor\" />
-    <Folder Include="src\components\paragraphs\" />
+    <Folder Include="src\components\paragraph\" />
+    <Folder Include="src\components\shared\" />
     <Folder Include="src\decorators\" />
-    <Folder Include="src\shared\" />
+    <Folder Include="src\definitions\" />
+    <Folder Include="src\extensions\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\components\editor\editor.ts" />
-    <TypeScriptCompile Include="src\components\paragraphs\paragraph.viewmodel.ts" />
+    <TypeScriptCompile Include="src\app.ts" />
+    <TypeScriptCompile Include="src\components\editor\editor-component.ts" />
+    <TypeScriptCompile Include="src\components\paragraph\paragraph-component.ts" />
     <TypeScriptCompile Include="src\decorators\autobind.ts" />
-    <TypeScriptCompile Include="src\shared\document.extensions.ts" />
-    <TypeScriptCompile Include="src\shared\drag-drop.ts" />
+    <TypeScriptCompile Include="src\definitions\html.d.ts" />
+    <TypeScriptCompile Include="src\extensions\document.extensions.ts" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

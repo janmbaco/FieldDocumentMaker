@@ -13,12 +13,17 @@ module.exports = {
                 use: 'ts-loader',
             },
             {
-                test: /\.css$/i,
+                test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
-                test: /\*\/*\/\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                test: /\.html$/,
+                use: [{
+                  loader: 'html-loader',
+                  options: {
+                    minimize: true
+                  }
+                }]
             }
         ]
     },

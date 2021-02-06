@@ -1,0 +1,25 @@
+.paragraph {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fff;
+}
+.paragraph > .top {
+    height: 12pt;
+}
+.paragraph > .bottom {
+    height: 6pt;
+}
+.paragraph.reborder {
+    border-color: #999;
+}
+
+.paragraph.dragging {
+    background-color:aquamarine;
+}
+.paragraph  .innerParagraph {
+    padding-left: 0.25cm;
+    padding-right: 0.25cm;
+    outline: 0px solid transparent;
+}
+
+
