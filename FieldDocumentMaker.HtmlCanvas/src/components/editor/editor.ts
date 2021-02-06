@@ -1,6 +1,6 @@
-import { Autobind } from '../decorators/autobind';
-import {  DragTarget } from '../shared/drag-drop'
-import { ParagraphViewModel } from './paragraphs/paragraph.viewmodel';
+import { Autobind } from '../../decorators/autobind';
+import {  DragTarget } from '../../shared/drag-drop'
+import { ParagraphViewModel } from '../paragraphs/paragraph';
 
 
 export class Editor implements DragTarget{
@@ -11,7 +11,6 @@ export class Editor implements DragTarget{
     private initialPoint: { x: number, y: number } = { x: 0, y: 0 }
     private direction: 'TOP' | 'BOTTOM' = 'BOTTOM'
 
-    // "#editor-container"
     constructor(editorView: HTMLTemplateElement, paragraphs: ParagraphViewModel[]){
         this.editorView = editorView
         this.paragraphs = paragraphs

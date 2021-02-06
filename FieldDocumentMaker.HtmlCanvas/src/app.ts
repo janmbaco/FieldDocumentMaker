@@ -1,7 +1,7 @@
 import '../node_modules/quill/dist/quill.snow.css';
 import { ParagraphQuillModule, ParagraphOptions } from './components/paragraphs/paragraph.module';
 import { Editor } from './components/editor';
-import { ParagraphViewModel } from './components/paragraphs/paragraph.viewmodel';
+import { ParagraphViewModel } from './components/paragraphs/paragraph';
 import { getElementsByXPath } from './shared/document.extensions';
 import { ParagraphCommands } from './components/paragraphs/paragraph.command';
 

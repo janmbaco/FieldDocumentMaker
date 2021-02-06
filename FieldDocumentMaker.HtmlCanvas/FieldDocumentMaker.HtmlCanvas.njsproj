@@ -56,8 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\components\editor\editor.ts" />
-    <TypeScriptCompile Include="src\components\paragraphs\paragraph.command.ts" />
-    <TypeScriptCompile Include="src\components\paragraphs\paragraph.module.ts" />
     <TypeScriptCompile Include="src\components\paragraphs\paragraph.viewmodel.ts" />
     <TypeScriptCompile Include="src\decorators\autobind.ts" />
     <TypeScriptCompile Include="src\shared\document.extensions.ts" />
