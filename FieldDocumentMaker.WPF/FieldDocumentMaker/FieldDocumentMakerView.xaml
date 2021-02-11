@@ -15,7 +15,7 @@
             <TreeView DockPanel.Dock="Left" MinWidth="150" x:Name="treeview" ItemsSource="{Binding TreeBranchVM}"  >
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type Tree:TreeBranchVM}" ItemsSource="{Binding Children}">
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal"  >
                             <TextBlock Text="{Binding PropertyName}"  />
                             <TextBlock Text=": " />
                             <TextBlock Text="{Binding Value}" />
@@ -27,7 +27,6 @@
                 <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="0,1">
                     <hwndhost:ChromiumWebBrowser 
                                   Address="{Binding Address}"
-                                  AllowDrop="True"
                                   WebBrowser="{Binding WebBrowser, Mode=OneWayToSource}"  />
                 </Border>
             </Grid>

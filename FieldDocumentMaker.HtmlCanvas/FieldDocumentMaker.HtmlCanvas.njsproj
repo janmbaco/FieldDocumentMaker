@@ -5,6 +5,12 @@
     <Name>FieldDocumentMaker.HtmlCanvas</Name>
     <RootNamespace>FieldDocumentMaker.HtmlCanvas</RootNamespace>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+    <ScriptArguments>
+    </ScriptArguments>
+    <LaunchUrl>
+    </LaunchUrl>
+    <NodejsPort>
+    </NodejsPort>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -12,7 +18,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>79d995c7-3d41-4194-8cff-e5f6f5094872</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>src\app.ts</StartupFile>
+    <StartupFile>src/app.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -21,7 +27,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <EnableTypeScript>true</EnableTypeScript>
-    <StartWebBrowser>False</StartWebBrowser>
+    <StartWebBrowser>True</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,9 +43,6 @@
     <Content Include="src\components\editor\editor-template.html" />
     <Content Include="src\components\paragraph\paragraph-style.css" />
     <Content Include="src\components\paragraph\paragraph-template.html" />
-    <Content Include="webpack.config.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>

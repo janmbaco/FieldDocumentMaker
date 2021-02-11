@@ -4,7 +4,6 @@
     min-height: 29.7cm;
     max-height: 29.7cm; 
     border: 1px dotted gray; 
-    overflow-y: none;
     font-family: 'Calibri';
     font-size: 12pt;
     text-align: justify;
@@ -12,7 +11,7 @@
     margin-top: 1cm;
     margin-bottom: 1cm;
     background-color: white;
-    display: table
+    display: table;
 }
 
 .editor > .top, .editor > .bottom {

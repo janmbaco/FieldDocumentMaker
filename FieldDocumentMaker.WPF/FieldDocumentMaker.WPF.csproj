@@ -62,7 +62,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -77,20 +79,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModel\FieldDocumentMakerVMFactory.cs" />
-    <Compile Include="ViewModel\TreeBranch\TreeBranchVM.cs" />
-    <Compile Include="ViewModel\TreeBranch\TreeBranchVMFactory.cs" />
-    <Page Include="FieldDocumentMakerView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="FieldDocumentMakerView.xaml.cs">
-      <DependentUpon>FieldDocumentMakerView.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ViewModel\FieldDocumentMakerVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -104,6 +92,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Window\FieldDocumentMakerView.xaml.cs">
+      <DependentUpon>FieldDocumentMakerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\FieldDocumentMakerVM.cs" />
+    <Compile Include="Window\FieldDocumentMakerVMFactory.cs" />
+    <Compile Include="Window\TreeBranch\TreeBranchVM.cs" />
+    <Compile Include="Window\TreeBranch\TreeBranchVMFactory.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -125,15 +120,18 @@
     <None Include="htmlView\bundle.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="htmlView\bundle.js.LICENSE.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="htmlView\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="htmlView\main.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Window\FieldDocumentMakerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,30 +1,30 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const dist = "../FieldDocumentMaker.WPF/htmlView";
 module.exports = {
-    mode: 'development',
     entry: './src/app.ts',
     module: {
         rules: [{
-                test: /\.ts$/,
-                use: 'ts-loader',
-            },
-            {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
-            },
-            {
-                test: /\.html$/,
-                use: [{
-                  loader: 'html-loader',
-                  options: {
+            test: /\.ts$/,
+            use: 'ts-loader'
+        },
+        {
+            test: /\.css$/,
+            use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
+        {
+            test: /\.html$/,
+            use: [{
+                loader: 'html-loader',
+                options: {
                     minimize: true
-                  }
-                }]
-            }
+                }
+            }]
+        }
         ]
     },
     resolve: {
@@ -35,8 +35,8 @@ module.exports = {
         filename: 'bundle.js'
     },
     optimization: {
-        minimize: false,
-        minimizer: [new TerserPlugin()],
+        minimize: true,
+        minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
     },
     plugins: [
         new MiniCssExtractPlugin(),

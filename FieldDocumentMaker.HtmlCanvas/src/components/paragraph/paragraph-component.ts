@@ -11,8 +11,8 @@ export class Paragraph
     private top: HTMLDivElement
     private bottom: HTMLDivElement
     private innerParagraph: HTMLParagraphElement
-    enter: () => void = () => {}
-    dragging: (uid: Guid) => void = () => {}
+    enter: (uid: Guid) => void = _ => {}
+    dragging: (uid: Guid) => void = _ => {}
 
     constructor(text?: string){
         this.id = Guid.create()
@@ -41,15 +41,21 @@ export class Paragraph
             console.log(e.key)
             if(e.key === 'Enter'){
                 e.preventDefault()
-                this.enter()
+                this.enter(this.id)
             }
         })
     }
-
-
-
+    
     focus(){
         this.innerParagraph.focus();
+    }
+
+    insertText(text: string){
+        this.innerParagraph.innerText = text
+    }
+
+    getText() : string{
+        return this.innerParagraph.innerText
     }
 
     AsHtmlElement() :  HTMLElement{
@@ -59,6 +65,11 @@ export class Paragraph
     @Autobind
     private togleDraggable(option: boolean){
         this.view.draggable = option;
+        if(option){
+            this.view.classList.add("draggable")
+        } else {
+            this.view.classList.remove("draggable")
+        }
     }
 
     @Autobind

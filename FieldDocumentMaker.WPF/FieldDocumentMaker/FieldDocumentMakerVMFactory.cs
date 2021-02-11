@@ -15,7 +15,7 @@ namespace FieldDocumentMaker.WPF.ViewModel
 
         public  FieldDocumentMakerVM CreateVM(EntityTree entity)
         {
-            return new FieldDocumentMakerVM( treeBranchVMFactory.CreateVM(entity) );
+            return new FieldDocumentMakerVM(treeBranchVMFactory.CreateVM(entity));
         }
     }
 }
