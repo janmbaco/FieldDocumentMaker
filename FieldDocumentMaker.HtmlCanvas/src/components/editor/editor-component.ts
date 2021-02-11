@@ -3,23 +3,19 @@ import view from './editor-template.html'
 import { Autobind } from '../../decorators/autobind';
 import { Paragraph } from '../paragraph/paragraph-component';
 import { Guid } from 'guid-typescript';
+import { ParagraphCollection } from '../ParagraphCollection/paragraph-collection-component';
 
 
 export class Editor {
 
 
     editorView: HTMLElement
-    paragraphAreaView: HTMLElement
-    private paragraphs: Paragraph[] = []
-    private initialPoint: { x: number, y: number } = { x: 0, y: 0 }
-    private direction: 'TOP' | 'BOTTOM' = 'BOTTOM'
-    private idParagraphDraggin: Guid | null = null
+    paragraphs: ParagraphCollection
 
 
     constructor(parent: HTMLElement){
         parent.innerHTML = view;
         this.editorView = parent.firstElementChild! as HTMLElement
-        this.paragraphAreaView = this.editorView.getElementsByClassName("middle")[0] as HTMLElement
         this.editorView.addEventListener('dragover', this.dragOverHandler)
         this.editorView.addEventListener('dragleave', this.dragLeaveHandler)
         this.editorView.addEventListener('drop', this.dropHandler)
@@ -28,9 +24,13 @@ export class Editor {
     insertParagraph(paragraph: Paragraph){
         this.paragraphAreaView.append(paragraph.AsHtmlElement())
         this.paragraphs.push(paragraph)
-        paragraph.enter = this.onParagraphEnter
-        paragraph.dragging = this.onParagrphDraggin
+        this.bindEvents(paragraph);
         paragraph.focus()
+    }
+
+    private bindEvents(paragraph: Paragraph) {
+        paragraph.enter = this.onParagraphEnter;
+        paragraph.dragging = this.onParagrphDraggin;
     }
 
     select(paragraphNumber: number) {
@@ -67,9 +67,20 @@ export class Editor {
     }
 
     @Autobind
-    onParagraphEnter(){
+    onParagraphEnter(uid: Guid){
+        
         const paragraph = new Paragraph()
-        this.insertParagraph(paragraph)
+        this.bindEvents(paragraph)
+        this.paragraphs.push(paragraph)
+        const p = this.paragraphs.filter(p => p.id === uid)[0]
+        const sel = window.getSelection()
+        const anteriorText =  p.getText().slice(0, sel?.anchorOffset)
+        const posteriorText = p.getText().slice(sel?.anchorOffset)
+        p.insertText(anteriorText)
+        paragraph.insertText(posteriorText)
+        this.paragraphAreaView.insertBefore(paragraph.AsHtmlElement().insertAdjacentElement, p.AsHtmlElement().nextElementSibling)
+        paragraph.focus()
+
     }
 
     @Autobind
