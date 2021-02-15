@@ -1,93 +1,33 @@
 import './editor-style.css'
 import view from './editor-template.html'
-import { Autobind } from '../../decorators/autobind';
-import { Paragraph } from '../paragraph/paragraph-component';
-import { Guid } from 'guid-typescript';
-import { ParagraphCollection } from '../ParagraphCollection/paragraph-collection-component';
+import { BaseComponent } from '../shared/base-component'
+import { ImageZone, ZoneColors, ParagraphZone } from '../zone/zone-component'
 
 
-export class Editor {
+export class Editor extends BaseComponent {
+
+    zones!: Map<string, Zone>
 
 
-    editorView: HTMLElement
-    paragraphs: ParagraphCollection
-
-
-    constructor(parent: HTMLElement){
-        parent.innerHTML = view;
-        this.editorView = parent.firstElementChild! as HTMLElement
-        this.editorView.addEventListener('dragover', this.dragOverHandler)
-        this.editorView.addEventListener('dragleave', this.dragLeaveHandler)
-        this.editorView.addEventListener('drop', this.dropHandler)
+    constructor(){
+        super('editor', view as string)
     }
 
-    insertParagraph(paragraph: Paragraph){
-        this.paragraphAreaView.append(paragraph.AsHtmlElement())
-        this.paragraphs.push(paragraph)
-        this.bindEvents(paragraph);
-        paragraph.focus()
+    async CreateImageZone(label: string, color: ZoneColors): Promise<ImageZone>{
+        const zone = new ImageZone(label, color)
+        await this.append(zone)
+        return zone
     }
 
-    private bindEvents(paragraph: Paragraph) {
-        paragraph.enter = this.onParagraphEnter;
-        paragraph.dragging = this.onParagrphDraggin;
+    async CreateParagraphZone(label: string, color: ZoneColors): Promise<ParagraphZone>{
+        const zone = new ParagraphZone(label, color)
+        await this.append(zone)
+        return zone
     }
+}
 
-    select(paragraphNumber: number) {
-        this.paragraphs[paragraphNumber].focus()
-    }
-
-    @Autobind
-    dragOverHandler(event: DragEvent): void {
-        if(this.idParagraphDraggin != null){
-            event.preventDefault()
-        }
-    }
-
-    @Autobind
-    dropHandler(event: DragEvent) {
-        if(this.idParagraphDraggin != null){
-            event.preventDefault()
-            console.log("target: " + (event.target as HTMLElement)?.innerText);
-           
-            const paragraph = this.paragraphs.filter(p => p.id=== this.idParagraphDraggin)[0];
-            
-            if(event.target === this.editorView){
-                this.editorView.appendChild(paragraph.AsHtmlElement())
-            } else {
-                this.editorView.insertBefore(paragraph.AsHtmlElement(), (event.target as HTMLElement).nextElementSibling);
-            }
-           this.idParagraphDraggin = null
-        }
-    }
-
-    @Autobind
-    dragLeaveHandler(_: DragEvent): void {
-        
-    }
-
-    @Autobind
-    onParagraphEnter(uid: Guid){
-        
-        const paragraph = new Paragraph()
-        this.bindEvents(paragraph)
-        this.paragraphs.push(paragraph)
-        const p = this.paragraphs.filter(p => p.id === uid)[0]
-        const sel = window.getSelection()
-        const anteriorText =  p.getText().slice(0, sel?.anchorOffset)
-        const posteriorText = p.getText().slice(sel?.anchorOffset)
-        p.insertText(anteriorText)
-        paragraph.insertText(posteriorText)
-        this.paragraphAreaView.insertBefore(paragraph.AsHtmlElement().insertAdjacentElement, p.AsHtmlElement().nextElementSibling)
-        paragraph.focus()
-
-    }
-
-    @Autobind
-    onParagrphDraggin(uid: Guid){
-        this.idParagraphDraggin = uid
-    }
-
-
-
+export async function EditorBuildOn(parent: HTMLElement): Promise<Editor>{
+    const editor = new Editor()
+    await editor.setParent(parent)
+    return editor
 }

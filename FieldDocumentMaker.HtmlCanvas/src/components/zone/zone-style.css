@@ -1,0 +1,39 @@
+.zone {
+    min-height: 5cm;
+    border: 3px solid #444; 
+    font-family: 'Calibri';
+    font-size: 12pt;
+    text-align: justify;
+    line-height: 24pt;
+    margin-bottom: 2px;
+    color:wheat;
+    
+}
+
+.zone.darkred{
+    background-color: #9239317f;
+}
+
+.zone.ligthgreen{
+    background-color: #90AD4C7f;
+}
+
+.zone.darkblue{
+    background-color: #35455d7f;
+}
+
+.zone.orange{
+    background-color: #e07a5f7f;
+}
+
+.zone.darkgreen{
+    background-color: #5b8e7d7f;
+}
+
+.zone.middlered{
+    background-color: #bc4b517f;
+}
+
+.zone > .name {
+    padding-left: 15px;
+}

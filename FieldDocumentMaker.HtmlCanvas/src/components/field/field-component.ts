@@ -10,10 +10,10 @@ export class Field{
 
     constructor(text: string){
         this.id = Guid.create()
-        const template = document.createElement("template") as HTMLTemplateElement
+        const template = document.createElement('template') as HTMLTemplateElement
         template.innerHTML = templateView
         this.view = template.content.firstElementChild as HTMLSpanElement
-        this.view.innerText = text   
+        this.view.innerText = text
     }
 }
 
