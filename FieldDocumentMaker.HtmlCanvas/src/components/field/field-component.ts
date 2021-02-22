@@ -1,19 +1,22 @@
-import { Guid } from 'guid-typescript'
-import './field-style.css'
-import templateView from './field-template.html'
+import { Observable } from 'rxjs'
+import { distinctUntilChanged } from 'rxjs/operators'
+import { FieldModel } from '../../state/fields/field-model'
+import { BaseComponent } from '../base-component'
 
-export class Field{
+export abstract class FieldComponent extends BaseComponent {
 
-    id: Guid
-    view: HTMLSpanElement
+    label = ''
+    value = ''
+    maskedValue = ''
 
-
-    constructor(text: string){
-        this.id = Guid.create()
-        const template = document.createElement('template') as HTMLTemplateElement
-        template.innerHTML = templateView
-        this.view = template.content.firstElementChild as HTMLSpanElement
-        this.view.innerText = text
+    constructor(fieldObservable: Observable<FieldModel>, name: string, view: string) {
+        super(name, view)
+        this.subscription = fieldObservable.pipe(distinctUntilChanged()).subscribe(field => {
+            this.setState(() => {
+                this.label = field.label
+                this.value = field.value
+                this.maskedValue = field.maskedValue
+            })
+        })
     }
 }
-

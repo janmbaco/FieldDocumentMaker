@@ -36,4 +36,6 @@
 
 .zone > .name {
     padding-left: 15px;
+    cursor: move;
+    user-select: none;
 }

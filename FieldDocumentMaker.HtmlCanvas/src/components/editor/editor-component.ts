@@ -1,33 +1,21 @@
 import './editor-style.css'
 import view from './editor-template.html'
-import { BaseComponent } from '../shared/base-component'
-import { ImageZone, ZoneColors, ParagraphZone } from '../zone/zone-component'
+import { BaseComponent } from '../base-component'
+import { Observable } from 'rxjs'
+import { ZoneModel } from '../../state/zones/zone-model'
+import { distinctUntilChanged } from 'rxjs/operators'
+import { ZoneFactory } from '../zone/zone-factory'
 
 
-export class Editor extends BaseComponent {
+export class EditorComponent extends BaseComponent {
 
-    zones!: Map<string, Zone>
-
-
-    constructor(){
+    constructor(parent: HTMLElement, zonesObservable: Observable<ZoneModel[]>, zoneFactory: ZoneFactory) {
         super('editor', view as string)
+        parent.innerText = 'loading...'
+        zonesObservable.pipe(distinctUntilChanged()).subscribe(zones => {
+            zones.forEach(zone => this.append(zoneFactory.create(zone)))
+            parent.innerText = ''
+            this.setInElement(parent)
+        })
     }
-
-    async CreateImageZone(label: string, color: ZoneColors): Promise<ImageZone>{
-        const zone = new ImageZone(label, color)
-        await this.append(zone)
-        return zone
-    }
-
-    async CreateParagraphZone(label: string, color: ZoneColors): Promise<ParagraphZone>{
-        const zone = new ParagraphZone(label, color)
-        await this.append(zone)
-        return zone
-    }
-}
-
-export async function EditorBuildOn(parent: HTMLElement): Promise<Editor>{
-    const editor = new Editor()
-    await editor.setParent(parent)
-    return editor
 }

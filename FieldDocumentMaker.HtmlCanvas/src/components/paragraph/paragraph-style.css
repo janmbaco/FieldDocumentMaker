@@ -1,29 +1,30 @@
 .paragraph {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #fff;
+	margin: 0.25cm;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #666;
+	background-color: #fff;
 }
 .paragraph > .top {
-    height: 12pt;
+	height: 12pt;
 }
 .paragraph > .bottom {
-    height: 6pt;
+	height: 6pt;
 }
 .paragraph.reborder {
-    border-color: #999;
+	border-color: #999;
 }
 
 .paragraph.dragging {
-    background-color:aquamarine;
+	background-color: aquamarine;
 }
-.paragraph  .innerParagraph {
-    padding-left: 0.25cm;
-    padding-right: 0.25cm;
-    outline: 0px solid transparent;
+.paragraph .innerParagraph {
+	padding-left: 0.25cm;
+	padding-right: 0.25cm;
+	outline: 0px solid transparent;
+	color: #333;
 }
-
 
 .paragraph.draggable {
-    cursor: move;
+	cursor: move;
 }
-

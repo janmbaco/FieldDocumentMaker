@@ -1,46 +1,55 @@
-import { Paragraph } from '../paragraph/paragraph-component'
-import { BaseComponent } from '../shared/base-component'
 import './zone-style.css'
 import view from './zone-template.html'
+import { BaseComponent } from '../base-component'
+import { ZoneModel, ZoneColors, ZoneTypes } from '../../state/zones/zone-model'
+import { Observable } from 'rxjs'
+import { distinctUntilChanged } from 'rxjs/operators'
+import { IFactory } from '../fatory-interface'
 
+export class ZoneComponent<TModel, TComponent extends BaseComponent> extends BaseComponent {
 
-export type ZoneColors = 'darkred' | 'ligthgreen' | 'darkblue' | 'orange' | 'darkgreen' | 'middlered'
+    color!: ZoneColors
+    label = ''
+    type!: ZoneTypes
+    factory: IFactory<TModel, TComponent>
+    elements: TModel[] = []
 
-export type ZoneTypes = 'Images' | 'Paragraphs'
-
-
-abstract class Zone extends BaseComponent{
-
-    color: string
-    label: string
-
-    constructor(label: string, color: ZoneColors){
+    constructor(zoneObservable: Observable<ZoneModel>, factory: IFactory<TModel, TComponent>) {
         super('zone', view as string)
-        this.color = color
-        this.label = label
-    }
-}
-
-export class ImageZone extends Zone{
-
-    private type: ZoneTypes = 'Images'
-
-    async AddImage(urlPath: string): Promise<void> {
-
+        this.factory = factory
+        zoneObservable.pipe(distinctUntilChanged()).subscribe(z => {
+            this.setState(() => {
+                this.color = z.color
+                this.label = z.label
+                this.type = z.type
+                this.loadElements(z.elements as unknown as TModel[])
+            })
+        })
     }
 
-}
-
-
-export class ParagraphZone extends Zone{
-
-    private type: ZoneTypes = 'Paragraphs'
-
-
-    async AddParagraph(text: string): Promise<void>{
-
+    private loadElements(elements: TModel[]): void {
+        if (elements && elements !== this.elements) {
+            let idx = 0
+            elements.forEach(model => {
+                const createNew = idx >= this.elements.length
+                const mustReplace = !createNew && model !== this.elements[idx]
+                if (createNew || mustReplace) {
+                    const component = this.factory.create(model)
+                    if (component) {
+                        this.insertOrReplace(idx, component)
+                    }
+                }
+                idx++
+            })
+            this.removeOffSetElements(this.type, this.elements.length - elements.length)
+            this.elements = elements
+        }
     }
 
+    protected removeOffSetElements(type: string, offset: number): void {
+        while (offset > 0) {
+            this.removeLastChild(type)
+            offset--
+        }
+    }
 }
-
-

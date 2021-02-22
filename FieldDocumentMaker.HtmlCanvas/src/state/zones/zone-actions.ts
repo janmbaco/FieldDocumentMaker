@@ -1,0 +1,9 @@
+import { createAction } from '@reduxjs/toolkit'
+import { ParagraphModel } from '../paragraphs/paragraph-model'
+import { ZoneColors, ZoneModel } from './zone-model'
+
+export const LoadZones = createAction<ZoneModel[], 'LoadZones'>('LoadZones')
+export const ModifyZoneColor = createAction<{id: string, color: ZoneColors}, 'ModifyZoneColor'>('ModifyZoneColor')
+export const ModifyZoneLabel = createAction<{id: string, label: string}, 'ModifyZoneLabel'>('ModifyZoneLabel')
+export const ModifyZoneColorAndLabel = createAction<{id: string, color: ZoneColors, label: string}, 'ModifyZoneColorAndLabel'>('ModifyZoneColorAndLabel')
+export const ChangeParagraphZone = createAction<{zoneLabel: string, paragraph: ParagraphModel}, 'ChangeParagraphZone'>('ChangeParagraphZone')
