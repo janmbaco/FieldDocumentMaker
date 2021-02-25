@@ -5,7 +5,6 @@ import { LoadFields } from './state/fields/field-actions'
 import { LoadZones } from './state/zones/zone-actions'
 import { IStateManagement } from './state/state-management-interface'
 import { DIContainer } from './di-container'
-import { IComponentFactory } from './components/component-fatory-interface'
 import { IEditorFactory } from './components/editor/editor-factory-interface'
 
 
