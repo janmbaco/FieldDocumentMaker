@@ -4,18 +4,15 @@ import { BaseComponent } from '../base-component'
 import { Observable } from 'rxjs'
 import { ZoneModel } from '../../state/zones/zone-model'
 import { distinctUntilChanged } from 'rxjs/operators'
-import { ZoneFactory } from '../zone/zone-factory'
+import { IComponentFactory } from '../component-fatory-interface'
 
 
 export class EditorComponent extends BaseComponent {
 
-    constructor(parent: HTMLElement, zonesObservable: Observable<ZoneModel[]>, zoneFactory: ZoneFactory) {
+    constructor(zonesObservable: Observable<ZoneModel[]>, zoneFactory: IComponentFactory<ZoneModel>) {
         super('editor', view as string)
-        parent.innerText = 'loading...'
         zonesObservable.pipe(distinctUntilChanged()).subscribe(zones => {
-            zones.forEach(zone => this.append(zoneFactory.create(zone)))
-            parent.innerText = ''
-            this.setInElement(parent)
+            zones.forEach(zone => this.append(zoneFactory.create(zone)!))
         })
     }
 }

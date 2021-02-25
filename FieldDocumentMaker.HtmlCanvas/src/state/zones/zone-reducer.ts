@@ -1,11 +1,12 @@
 import { AnyAction, createReducer, PayloadAction, Reducer } from '@reduxjs/toolkit'
 import { ParagraphModel } from '../paragraphs/paragraph-model'
+import { IReducer } from '../reducer-interface'
 import { ChangeParagraphZone, ModifyZoneColor, LoadZones, ModifyZoneLabel, ModifyZoneColorAndLabel } from './zone-actions'
 import { ZoneColors, ZoneModel } from './zone-model'
 
 const initialState: ZoneModel[] = []
 
-export class ZoneReducer {
+export class ZoneReducer implements IReducer<ZoneModel[]> {
 
   reducer: Reducer<ZoneModel[], AnyAction>
 

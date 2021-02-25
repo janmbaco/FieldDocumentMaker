@@ -1,6 +1,7 @@
-import { FieldModel } from '../../state/fields/field-model'
-import { StateManagement } from '../../state/state-management'
-import { IFactory } from '../fatory-interface'
+import { inject, injectable } from 'tsyringe'
+import { FieldBindModel } from '../../state/fields/field-bind-model'
+import { IStateManagement } from '../../state/state-management-interface'
+import { IComponentFactory } from '../component-fatory-interface'
 import { ComboFieldComponent } from './combo-field/combo-field-component'
 import { DateFieldComponent } from './date-field/date-field-component'
 import { FieldComponent } from './field-component'
@@ -9,15 +10,16 @@ import { ImageFieldComponent } from './image-field/image-field-component'
 import { IntegerFieldComponent } from './integer-field/integer-field-component'
 import { TextFieldComponent } from './text-field/text-field-component'
 
-export class FieldFactory implements IFactory<{ bind: string, style: string }, FieldComponent> {
+@injectable()
+export class FieldFactory implements IComponentFactory<FieldBindModel> {
 
-    stateManagement: StateManagement
+    stateManagement: IStateManagement
 
-    constructor(stateManagement: StateManagement) {
+    constructor(@inject('stateManagement') stateManagement: IStateManagement) {
         this.stateManagement = stateManagement
     }
 
-    create(model: { bind: string, style: string }): FieldComponent | null {
+    create(model: FieldBindModel): FieldComponent | null {
         const field = this.stateManagement.getFieldByBind(model.bind)
         if (field) {
             switch (field.type) {

@@ -1,17 +1,20 @@
-import { StateManagement } from '../../state/state-management'
-import { IFactory } from '../fatory-interface'
-import { ZoneFactory } from '../zone/zone-factory'
+import { inject, injectable } from 'tsyringe'
+import { IStateManagement } from '../../state/state-management-interface'
+import { ZoneModel } from '../../state/zones/zone-model'
+import { IComponentFactory } from '../component-fatory-interface'
 import { EditorComponent } from './editor-component'
+import { IEditorFactory } from './editor-factory-interface'
 
-export class EditorFactory implements IFactory<HTMLElement, EditorComponent>{
+@injectable()
+export class EditorFactory implements IEditorFactory {
 
-    stateManagement: StateManagement
-    zoneFactory: ZoneFactory
-    constructor(stateManagement: StateManagement, zoneFactory: ZoneFactory) {
+    stateManagement: IStateManagement
+    zoneFactory: IComponentFactory<ZoneModel>
+    constructor(@inject('stateManagement') stateManagement: IStateManagement, @inject('zoneFactory') zoneFactory: IComponentFactory<ZoneModel>) {
         this.stateManagement = stateManagement
         this.zoneFactory = zoneFactory
     }
-    create(parent: HTMLElement): EditorComponent {
-        return new EditorComponent(parent, this.stateManagement.zonesSubject.asObservable(), this.zoneFactory)
+    create(): EditorComponent {
+        return new EditorComponent(this.stateManagement.getZonesObservable(), this.zoneFactory)
     }
 }

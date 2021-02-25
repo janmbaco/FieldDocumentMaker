@@ -1,10 +1,11 @@
 import { AnyAction, createReducer, PayloadAction, Reducer } from '@reduxjs/toolkit'
-import { ToogleLoaded } from '../loading-actions'
+import { IReducer } from '../reducer-interface'
+import { ToogleLoaded } from './loading-actions'
 
 // tslint:disable-next-line: no-inferrable-types
 const initialState: boolean = false
 
-export class LoadingReducer {
+export class LoadingReducer implements IReducer<boolean>{
 
     reducer: Reducer<boolean, AnyAction>
 

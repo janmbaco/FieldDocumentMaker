@@ -4,20 +4,20 @@ import { BaseComponent } from '../base-component'
 import { ParagraphModel } from '../../state/paragraphs/paragraph-model'
 import { Observable } from 'rxjs'
 import { distinctUntilChanged } from 'rxjs/operators'
-import { FieldComponent } from '../field/field-component'
-import { FieldFactory } from '../field/field-factory'
 import { createElementFromTemplate } from '../shared/document-extension'
+import { IComponentFactory } from '../component-fatory-interface'
+import { IComponent } from '../component-interface'
 
 
 export class ParagraphComponent extends BaseComponent {
 
     private template = ''
-    private fields: FieldComponent[] = []
-    private fieldFactory: FieldFactory
+    private fields: IComponent[] = []
+    private fieldFactory: IComponentFactory<{ bind: string, style: string }>
     private innerClass = 'innerParagraph'
     private ParagraphElement!: HTMLElement
 
-    constructor(paragraphObservable: Observable<ParagraphModel>, fieldFactory: FieldFactory) {
+    constructor(paragraphObservable: Observable<ParagraphModel>, fieldFactory: IComponentFactory<{ bind: string, style: string }>) {
         super('Paragraph', view as string)
         this.fieldFactory = fieldFactory
         this.subscription = paragraphObservable.pipe(distinctUntilChanged()).subscribe(paragraph => {
@@ -34,7 +34,7 @@ export class ParagraphComponent extends BaseComponent {
         this.ParagraphElement = createElementFromTemplate(this.template)
         Array.from(this.ParagraphElement.children).forEach(child => {
             if (child.nodeName === 'FIELD') {
-                let field: FieldComponent | null = null
+                let field: IComponent | null = null
                 const bind = child.attributes.getNamedItem('bind')
                 const style = child.attributes.getNamedItem('style')
                 if (bind && style) {

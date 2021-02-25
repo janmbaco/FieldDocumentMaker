@@ -1,9 +1,10 @@
 import { AnyAction, createReducer, PayloadAction, Reducer } from '@reduxjs/toolkit'
 import { FieldModel } from './field-model'
 import { LoadFields, ChangeField } from './field-actions'
+import { IReducer } from '../reducer-interface'
 
 const initialState: FieldModel[] = []
-export class FieldReducer {
+export class FieldReducer implements IReducer<FieldModel[]> {
 
   reducer: Reducer<FieldModel[], AnyAction>
 

@@ -1,13 +1,14 @@
 import { Subject, Subscription } from 'rxjs'
 import { distinctUntilChanged } from 'rxjs/operators'
+import { IComponent } from './component-interface'
 import { createElementFromTemplate } from './shared/document-extension'
 
-export class BaseComponent {
+export class BaseComponent implements IComponent {
     [i: string]: any
 
     private static nodeTextStrings = /{{\s*([^}]*)}}/g
     private name: string
-    private childs: Map<string, BaseComponent[]> = new Map<string, BaseComponent[]>()
+    private childs: Map<string, IComponent[]> = new Map<string, IComponent[]>()
     private isRendered = false
     private viewStateActions: Map<string, Subject<string>> = new Map<string, Subject<string>>()
     private baseElement: HTMLElement
@@ -18,21 +19,21 @@ export class BaseComponent {
         this.baseElement = createElementFromTemplate(template)
     }
 
-    setState(func: () => void = () => { }): void {
-        func()
-        for (const property in this) {
-            if (this.hasOwnProperty(property)) {
-                const key = '{{' + property + '}}'
-                if (this.viewStateActions.has(key)) {
-                    this.viewStateActions.get(key)?.next(this[property])
-                }
-            }
-        }
+    get Name(): string {
+        return this.name
+    }
+
+    get HtmlElement(): HTMLElement {
+        this.render()
+        return this.baseElement
+    }
+
+    setInElement(element: HTMLElement): void {
+        element.appendChild(this.HtmlElement)
     }
 
     setInstanceOfElement(parent: HTMLElement, child: Element): void {
-        this.render()
-        parent.replaceChild(this.baseElement, child)
+        parent.replaceChild(this.HtmlElement, child)
     }
 
 
@@ -56,16 +57,29 @@ export class BaseComponent {
         }
     }
 
+    render(): void {
+        if (!this.isRendered) {
+            this.compileTemplate()
+            this.isRendered = true
+        }
+    }
+    protected setState(func: () => void = () => { }): void {
+        func()
+        for (const property in this) {
+            if (this.hasOwnProperty(property)) {
+                const key = '{{' + property + '}}'
+                if (this.viewStateActions.has(key)) {
+                    this.viewStateActions.get(key)?.next(this[property])
+                }
+            }
+        }
+    }
+
     protected removeLastChild(type: string): void {
         if (this.childs.has(type)) {
             const component = this.childs.get(type)?.pop()
             component?.remove()
         }
-    }
-
-    protected setInElement(element: HTMLElement): void {
-        this.render()
-        element.appendChild(this.baseElement)
     }
 
     protected setInInnerClass(className: string, element: Element): void {
@@ -79,50 +93,41 @@ export class BaseComponent {
         }
     }
 
-
     protected onClick(func: (e: MouseEvent) => void): void {
         if (this.baseElement) {
             this.baseElement.addEventListener('click', func)
         }
     }
 
-    protected append(component: BaseComponent): void {
+    protected append(component: IComponent): void {
         this.render()
-        const collectionZone = this.baseElement!.getElementsByClassName(component.name + '-collection')[0] as HTMLElement
+        const collectionZone = this.baseElement!.getElementsByClassName(component.Name + '-collection')[0] as HTMLElement
         if (collectionZone) {
-            if (!this.childs.has(component.name)) {
-                this.childs.set(component.name, [])
+            if (!this.childs.has(component.Name)) {
+                this.childs.set(component.Name, [])
             }
-            this.childs.get(component.name)!.push(component)
-            component.parent = this
-            if (!component.isRendered) {
-                component.render()
-            }
-            collectionZone.append(component.baseElement!)
+            this.childs.get(component.Name)!.push(component)
+            collectionZone.append(component.HtmlElement)
         } else {
-            throw new Error(`the ${this.name} type can't append ${component.name} types`)
+            throw new Error(`the ${this.name} type can't append ${component.Name} types`)
         }
     }
 
-    protected insertOrReplace(index: number, component: BaseComponent): void {
+    protected insertOrReplace(index: number, component: IComponent): void {
         this.render()
-        const collectionZone = this.baseElement!.getElementsByClassName(component.name + '-collection')[0] as HTMLElement
+        const collectionZone = this.baseElement!.getElementsByClassName(component.Name + '-collection')[0] as HTMLElement
         if (collectionZone) {
-            if (!this.childs.has(component.name) || index >= this.childs.get(component.name)!.length) {
+            if (!this.childs.has(component.Name) || index >= this.childs.get(component.Name)!.length) {
                 this.append(component)
             } else {
-                this.childs.get(component.name)![index].remove()
-                this.childs.get(component.name)![index] = component
+                const beforeComponent = this.childs.get(component.Name)![index]
+                this.collectionZone.insertBefore(component.HtmlElement, beforeComponent.HtmlElement)
+                beforeComponent.remove()
+                this.childs.get(component.Name)![index] = component
             }
         }
     }
 
-    private render(): void {
-        if (!this.isRendered) {
-            this.compileTemplate()
-            this.isRendered = true
-        }
-    }
 
     private compileTemplate(): void {
         this.compileElement(this.baseElement)

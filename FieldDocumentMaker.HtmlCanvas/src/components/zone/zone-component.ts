@@ -4,17 +4,17 @@ import { BaseComponent } from '../base-component'
 import { ZoneModel, ZoneColors, ZoneTypes } from '../../state/zones/zone-model'
 import { Observable } from 'rxjs'
 import { distinctUntilChanged } from 'rxjs/operators'
-import { IFactory } from '../fatory-interface'
+import { IComponentFactory } from '../component-fatory-interface'
 
-export class ZoneComponent<TModel, TComponent extends BaseComponent> extends BaseComponent {
+export class ZoneComponent<TModel> extends BaseComponent {
 
     color!: ZoneColors
     label = ''
     type!: ZoneTypes
-    factory: IFactory<TModel, TComponent>
+    factory: IComponentFactory<TModel>
     elements: TModel[] = []
 
-    constructor(zoneObservable: Observable<ZoneModel>, factory: IFactory<TModel, TComponent>) {
+    constructor(zoneObservable: Observable<ZoneModel>, factory: IComponentFactory<TModel>) {
         super('zone', view as string)
         this.factory = factory
         zoneObservable.pipe(distinctUntilChanged()).subscribe(z => {

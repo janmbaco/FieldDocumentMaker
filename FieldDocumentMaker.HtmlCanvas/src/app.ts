@@ -1,14 +1,12 @@
+import 'reflect-metadata'
 import { Store } from '@reduxjs/toolkit'
-import { ZoneReducer } from './state/zones/zone-reducer'
-import { FieldReducer } from './state/fields/field-reducer'
-import { StateManagement } from './state/state-management'
-import { LoadingReducer } from './state/loading/loading-reducer'
 import { AppState } from './state/app-state'
-import { EditorFactory } from './components/editor/editor-factory'
-import { ChangeField, LoadFields } from './state/fields/field-actions'
-import { LoadZones, ModifyZoneColorAndLabel } from './state/zones/zone-actions'
-import { FieldFactory } from './components/field/field-factory'
-import { ZoneFactory } from './components/zone/zone-factory'
+import { LoadFields } from './state/fields/field-actions'
+import { LoadZones } from './state/zones/zone-actions'
+import { IStateManagement } from './state/state-management-interface'
+import { DIContainer } from './di-container'
+import { IComponentFactory } from './components/component-fatory-interface'
+import { IEditorFactory } from './components/editor/editor-factory-interface'
 
 
 declare global {
@@ -19,76 +17,84 @@ declare global {
     }
 }
 
-const stateManagement = new StateManagement(new LoadingReducer(), new ZoneReducer(), new FieldReducer())
+class App {
+    static main(): void {
+        const container = new DIContainer()
 
-document.store = stateManagement.store
-document.modifyColorAndLabel = ModifyZoneColorAndLabel
-document.changeText = ChangeField
-const editor = new EditorFactory(stateManagement, new ZoneFactory(stateManagement, new FieldFactory(stateManagement))).create(document.body)
+        container.registerFacade()
 
-document.store.dispatch(LoadFields(
-    [
-        {
-            label: 'foto',
-            value: '',
-            maskedValue: 'C:\\image\\foto.png',
-            style: '',
-            bind: 'foto',
-            type: 'Image'
-        },
-        {
-            label: 'texto',
-            value: 'esto es texto',
-            maskedValue: 'Esto es Texto',
-            style: '',
-            bind: 'texto1',
-            type: 'Text'
-        }
-    ])
-)
+        document.store = container.resolve<IStateManagement>('stateManagement').Store
+
+        const editor = container.resolve<IEditorFactory>('editorFactory').create()
+
+        editor.setInElement(document.body)
+
+    }
+}
+
+setTimeout(() => {
+    App.main()
 
 
-document.store.dispatch(LoadZones(
-    [
-        {
-            id: '1',
-            color: 'orange',
-            label: 'Uno',
-            isVisible: true,
-            elements: [{ bind: 'foto', style: '' }],
-            type: 'Image'
-        },
-        {
-            id: '2',
-            color: 'darkblue',
-            label: 'Dos',
-            isVisible: true,
-            elements: [{
+
+    document.store.dispatch(LoadFields(
+        [
+            {
+                label: 'foto',
+                value: '',
+                maskedValue: 'C:\\image\\foto.png',
+                style: '',
+                bind: 'foto',
+                type: 'Image'
+            },
+            {
+                label: 'texto',
+                value: 'esto es texto',
+                maskedValue: 'Esto es Texto',
+                style: '',
+                bind: 'texto1',
+                type: 'Text'
+            }
+        ])
+    )
+
+
+    document.store.dispatch(LoadZones(
+        [
+            {
                 id: '1',
-                template: '<p>Hola mundo: <field bind="texto1" style=""></field> esto es lo posterior a un texto</p>',
-                IsVisible: true
-
-            }],
-            type: 'Paragraph'
-        },
-        {
-            id: '3',
-            color: 'darkred',
-            label: 'tres',
-            isVisible: true,
-            elements: [{
+                color: 'orange',
+                label: 'Uno',
+                isVisible: true,
+                elements: [{ bind: 'foto', style: '' }],
+                type: 'Image'
+            },
+            {
                 id: '2',
-                template: '<p>otro bonito texto guay <field bind="texto1" style=""></field> por ejemplo</p>',
-                IsVisible: true
+                color: 'darkblue',
+                label: 'Dos',
+                isVisible: true,
+                elements: [{
+                    id: '1',
+                    template: '<p>Hola mundo: <field bind="texto1" style=""></field> esto es lo posterior a un texto</p>',
+                    IsVisible: true
 
-            }],
-            type: 'Paragraph'
-        }
-    ]
-))
+                }],
+                type: 'Paragraph'
+            },
+            {
+                id: '3',
+                color: 'darkred',
+                label: 'tres',
+                isVisible: true,
+                elements: [{
+                    id: '2',
+                    template: '<p>otro bonito texto guay <field bind="texto1" style=""></field> por ejemplo</p>',
+                    IsVisible: true
 
-
-
-
-
-
+                }],
+                type: 'Paragraph'
+            }
+        ]
+    ))
+})

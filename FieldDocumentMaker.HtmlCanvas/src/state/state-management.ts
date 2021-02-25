@@ -1,25 +1,26 @@
 import { configureStore, Store } from '@reduxjs/toolkit'
 import { BehaviorSubject, Observable, Subject } from 'rxjs'
+import { inject, injectable } from 'tsyringe'
 import { Autobind } from '../decorators/autobind'
 import { AppState } from './app-state'
 import { FieldModel } from './fields/field-model'
-import { FieldReducer } from './fields/field-reducer'
-import { ToogleLoaded } from './loading-actions'
-import { LoadingReducer } from './loading/loading-reducer'
+import { ToogleLoaded } from './loading/loading-actions'
 import { ParagraphModel } from './paragraphs/paragraph-model'
+import { IReducer } from './reducer-interface'
+import { IStateManagement } from './state-management-interface'
 import { ZoneModel } from './zones/zone-model'
-import { ZoneReducer } from './zones/zone-reducer'
 
+@injectable()
+export class StateManagement implements IStateManagement {
 
-export class StateManagement {
-    zonesSubject = new Subject<ZoneModel[]>()
-    zoneSubjects: Map<string, BehaviorSubject<ZoneModel>>
-    paragraphSubjects: Map<string, BehaviorSubject<ParagraphModel>>
-    filedSubjects: Map<string, BehaviorSubject<FieldModel>>
-    store: Store<AppState>
-    initialized = false
+    private zonesSubject = new Subject<ZoneModel[]>()
+    private zoneSubjects: Map<string, BehaviorSubject<ZoneModel>>
+    private paragraphSubjects: Map<string, BehaviorSubject<ParagraphModel>>
+    private filedSubjects: Map<string, BehaviorSubject<FieldModel>>
+    private store: Store<AppState>
+    private initialized = false
 
-    constructor(loadingReducer: LoadingReducer, zoneReducer: ZoneReducer, fieldReducer: FieldReducer) {
+    constructor(@inject('loadingReducer') loadingReducer: IReducer<boolean>, @inject('zoneReducer') zoneReducer: IReducer<ZoneModel[]>, @inject('fieldReducer') fieldReducer: IReducer<FieldModel[]>) {
         this.zoneSubjects = new Map<string, BehaviorSubject<ZoneModel>>()
         this.paragraphSubjects = new Map<string, BehaviorSubject<ParagraphModel>>()
         this.filedSubjects = new Map<string, BehaviorSubject<FieldModel>>()
@@ -86,6 +87,10 @@ export class StateManagement {
         }
     }
 
+    getZonesObservable(): Observable<ZoneModel[]> {
+        return this.zonesSubject.asObservable()
+    }
+
     getZoneModelObservable(z: ZoneModel): Observable<ZoneModel> {
         return this.zoneSubjects.get(z.id)?.asObservable()!
     }
@@ -108,5 +113,8 @@ export class StateManagement {
         }
     }
 
+    get Store(): Store<AppState> {
+        return this.store
+    }
 
 }

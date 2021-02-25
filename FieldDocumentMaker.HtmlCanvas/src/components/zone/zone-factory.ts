@@ -1,30 +1,30 @@
-import { FieldModel } from '../../state/fields/field-model'
+import { inject, injectable } from 'tsyringe'
+import { FieldBindModel } from '../../state/fields/field-bind-model'
 import { ParagraphModel } from '../../state/paragraphs/paragraph-model'
-import { StateManagement } from '../../state/state-management'
+import { IStateManagement } from '../../state/state-management-interface'
 import { ZoneModel } from '../../state/zones/zone-model'
 import { BaseComponent } from '../base-component'
-import { IFactory } from '../fatory-interface'
-import { FieldComponent } from '../field/field-component'
-import { FieldFactory } from '../field/field-factory'
-import { ParagraphComponent } from '../paragraph/paragraph-component'
-import { ParagraphFactory } from '../paragraph/paragraph-factory'
+import { IComponentFactory } from '../component-fatory-interface'
 import { ZoneComponent } from './zone-component'
 
-export class ZoneFactory implements IFactory<ZoneModel, BaseComponent>{
+@injectable()
+export class ZoneFactory implements IComponentFactory<ZoneModel>{
 
-    stateManagement: StateManagement
-    fieldFactory: FieldFactory
+    private stateManagement: IStateManagement
+    private fieldFactory: IComponentFactory<FieldBindModel>
+    private paragrphFactory: IComponentFactory<ParagraphModel>
 
-    constructor(stateManageMent: StateManagement, fielFactory: FieldFactory) {
-        this.stateManagement = stateManageMent
-        this.fieldFactory = fielFactory
+    constructor(@inject('stateManagement') stateManagement: IStateManagement, @inject('fieldFactory') fieldFactory: IComponentFactory<FieldBindModel>, @inject('paragraphFactory') paragraphFactory: IComponentFactory<ParagraphModel>) {
+        this.stateManagement = stateManagement
+        this.fieldFactory = fieldFactory
+        this.paragrphFactory = paragraphFactory
     }
 
     create(zone: ZoneModel): BaseComponent {
         if (zone.type === 'Image') {
-            return new ZoneComponent<FieldModel, FieldComponent>(this.stateManagement.getZoneModelObservable(zone), this.fieldFactory)
+            return new ZoneComponent<FieldBindModel>(this.stateManagement.getZoneModelObservable(zone), this.fieldFactory)
         } else {
-            return new ZoneComponent<ParagraphModel, ParagraphComponent>(this.stateManagement.getZoneModelObservable(zone), new ParagraphFactory(this.stateManagement, this.fieldFactory))
+            return new ZoneComponent<ParagraphModel>(this.stateManagement.getZoneModelObservable(zone), this.paragrphFactory)
         }
     }
 
