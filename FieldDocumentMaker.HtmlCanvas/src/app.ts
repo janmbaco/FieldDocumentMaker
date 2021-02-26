@@ -34,8 +34,6 @@ class App {
 setTimeout(() => {
     App.main()
 
-
-
     document.store.dispatch(LoadFields(
         [
             {

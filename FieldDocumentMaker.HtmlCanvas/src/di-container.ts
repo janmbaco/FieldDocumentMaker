@@ -19,8 +19,9 @@ import { IEditorFactory } from './components/editor/editor-factory-interface'
 
 export type ContainerItems = 'loadingReducer' | 'fieldReducer' | 'zoneReducer' | 'stateManagement' | 'fieldFactory' | 'paragraphFactory' | 'zoneFactory' | 'editorFactory'
 
-export class DIContainer {
 
+
+export class DIContainer {
 
     registerFacade(): void {
 

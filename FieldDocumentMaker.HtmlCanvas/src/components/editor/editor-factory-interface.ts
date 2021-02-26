@@ -1,4 +1,4 @@
-import { EditorComponent } from "./editor-component";
+import { EditorComponent } from './editor-component'
 
 export interface IEditorFactory {
     create(): EditorComponent
