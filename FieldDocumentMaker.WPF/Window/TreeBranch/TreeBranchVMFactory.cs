@@ -1,13 +1,21 @@
 ﻿using FieldDocumentMaker.Library.Domain.Entities.Tree;
+using FieldDocumentMaker.Library.Domain.Services;
 using System.Collections.Generic;
 
 namespace FieldDocumentMaker.WPF.Window.TreeBranch
 {
     public class TreeBranchVMFactory
     {
-        public List<TreeBranchVM> CreateVM(EntityTree entity)
+        readonly IFieldDocumentMakerService fieldDocumentMakerService;
+
+        public TreeBranchVMFactory(IFieldDocumentMakerService fieldDocumentMakerService)
         {
-            List<TreeBranchVM> result = new List<TreeBranchVM>();
+            this.fieldDocumentMakerService = fieldDocumentMakerService;
+        }
+
+        public List<TreeBranchVMItemSource> CreateVM(EntityTree entity)
+        {
+            List<TreeBranchVMItemSource> result = new List<TreeBranchVMItemSource>();
 
             foreach (EntityBranch branch in entity.GetChildren<EntityBranch>())
             {
@@ -17,10 +25,10 @@ namespace FieldDocumentMaker.WPF.Window.TreeBranch
             return result;
         }
 
-        public TreeBranchVM CreateVM(EntityBranch entity)
+        public TreeBranchVMItemSource CreateVM(EntityBranch entity)
         {
             string name = entity.Name;
-            List<TreeBranchVM> children = new List<TreeBranchVM>();
+            List<TreeBranchVMItemSource> children = new List<TreeBranchVMItemSource>();
 
             foreach (EntityLeaf branch in entity.GetChildren<EntityLeaf>())
             {
@@ -31,12 +39,13 @@ namespace FieldDocumentMaker.WPF.Window.TreeBranch
                 children.Add(this.CreateVM(branch));
             }
 
-            return new TreeBranchVM(name, null, children);
+
+            return new TreeBranchVMItemSource(new TreeBranchVM(name, null, children), null);
         }
 
-        public TreeBranchVM CreateVM(EntityLeaf entity)
+        public TreeBranchVMItemSource CreateVM(EntityLeaf entity)
         {
-            return new TreeBranchVM(entity.Name, entity.Value, new List<TreeBranchVM>());
+            return new TreeBranchVMItemSource(new TreeBranchVM(entity.Name, entity.Value, new List<TreeBranchVMItemSource>()), fieldDocumentMakerService.GetBindingFieldObserver(entity.Id));
 
         }
 

@@ -11,29 +11,45 @@ namespace FieldDocumentMaker.Library.Domain.Services
     {
         private readonly EntityTree entityTree;
         private readonly Document document;
+        private readonly Dictionary<string, BindingField> fields;
+        private readonly Dictionary<string, BindingFieldObserver> Observers;
 
         public event Func<string, BindingField, BindingField> InterceptFieldChange;
 
         public FieldDocumentMakerService(EntityTree entityTree, Document document)
         {
             this.entityTree = entityTree;
+            this.fields = this.entityTree.GetAllSubEntities<EntityLeaf>().Select(e => new BindingField(e)).ToDictionary(k => k.Binding.Id);
             this.document = document;
+            this.Observers = new Dictionary<string, BindingFieldObserver>();
         }
 
-        public BindingField ChangeValue(BindingField field, string value)
+        public BindingField ChangeValue(string id, string value)
         {
-            var result = field;
-
-            if(this.InterceptFieldChange != null)
+            BindingField result = null;
+            if (fields.ContainsKey(id))
             {
-                result = this.InterceptFieldChange(value, field);
+                var field = this.fields[id];
+                if (this.InterceptFieldChange != null)
+                {
+                    result = this.InterceptFieldChange(value, field);
+                }
+                else
+                {
+                    field.Binding.Value = value;
+                    result = field;
+                }
+            }
+            if (this.Observers.ContainsKey(result.Binding.Id))
+            {
+                this.Observers[result.Binding.Id].Next(result);
             }
             return result;
         }
 
         public List<BindingField> GetFields()
         {
-            return this.entityTree.GetAllSubEntities<EntityLeaf>().Select(e => new BindingField(e)).ToList();
+            return this.fields.Select(k => k.Value).ToList();
         }
 
         public List<Zone> GetZones()
@@ -44,6 +60,15 @@ namespace FieldDocumentMaker.Library.Domain.Services
         public EntityTree GetEntityTree()
         {
             return this.entityTree;
+        }
+
+        public BindingFieldObserver GetBindingFieldObserver(string id)
+        {
+            if (!Observers.ContainsKey(id))
+            {
+                this.Observers.Add(id, new BindingFieldObserver());
+            }
+            return this.Observers[id];
         }
     }
 }

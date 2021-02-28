@@ -10,13 +10,15 @@ namespace FieldDocumentMaker.Library.Domain.Services
     {
         event Func<string, BindingField, BindingField> InterceptFieldChange;
 
+        BindingFieldObserver GetBindingFieldObserver(string id);
+
         List<BindingField> GetFields();
 
         List<Zone> GetZones();
 
         EntityTree GetEntityTree();
 
-        BindingField ChangeValue(BindingField field, string value);
+        BindingField ChangeValue(string id, string value);
 
     }
 }

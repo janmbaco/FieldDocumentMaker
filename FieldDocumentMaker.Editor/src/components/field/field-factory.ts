@@ -34,7 +34,7 @@ export class FieldFactory implements IComponentFactory<FieldBindModel> {
                 case 'Integer':
                     return new IntegerFieldComponent(this.stateManagement.getFieldModelObservable(field))
                 case 'Text':
-                    return new TextFieldComponent(this.stateManagement.getFieldModelObservable(field))
+                    return new TextFieldComponent(this.stateManagement.getFieldModelObservable(field), this.stateManagement.getChangeFieldValueExecute(field))
             }
         }
         return null

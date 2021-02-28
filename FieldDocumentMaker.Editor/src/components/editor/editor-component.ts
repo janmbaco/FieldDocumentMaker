@@ -12,7 +12,9 @@ export class EditorComponent extends BaseComponent {
     constructor(zonesObservable: Observable<ZoneModel[]>, zoneFactory: IComponentFactory<ZoneModel>) {
         super(view as string)
         zonesObservable.pipe(distinctUntilChanged()).subscribe(zones => {
-            zones.forEach(zone => this.append(zoneFactory.create(zone)!, "zone-collection"))
+            let idx = 0
+            zones.forEach(zone => this.insertOrReplace(idx++, zoneFactory.create(zone)!, 'zone-collection'))
+            this.removeOffSetElements(this.Children.length - idx)
         })
     }
 }

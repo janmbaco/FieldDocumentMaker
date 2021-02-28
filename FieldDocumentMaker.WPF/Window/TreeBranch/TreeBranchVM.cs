@@ -1,28 +1,36 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
 
 namespace FieldDocumentMaker.WPF.Window.TreeBranch
 {
-    public class TreeBranchVM
+    public class TreeBranchVM : INotifyPropertyChanged
     {
-        public string Value { get; }
+        private string _value;
 
-        public string PropertyName { get;  }
+        public string Value { 
+            get => _value; 
+            set { 
+                _value = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
+            } 
+        }
 
-        public List<TreeBranchVM> Children { get; }
+        public string Label { get; }
 
-       
-      
-        internal TreeBranchVM(string propertyName, string value, List<TreeBranchVM> children)
+        public List<TreeBranchVMItemSource> Children { get; }
+
+
+
+        internal TreeBranchVM(string label, string value, List<TreeBranchVMItemSource> children)
         {
-            this.PropertyName = propertyName;
+            this.Label = label;
             this.Value = value;
             this.Children = children;
         }
 
-
-
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

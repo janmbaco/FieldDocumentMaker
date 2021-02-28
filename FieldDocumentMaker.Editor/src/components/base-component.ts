@@ -1,5 +1,5 @@
 import { Subject, Subscription } from 'rxjs'
-import { distinctUntilChanged } from 'rxjs/operators'
+import { distinctUntilChanged, elementAt } from 'rxjs/operators'
 import { IComponent } from './component-interface'
 import { createElementFromTemplate } from './shared/document-extension'
 
@@ -7,11 +7,12 @@ export class BaseComponent implements IComponent {
     [i: string]: any
 
     private static nodeTextStrings = /{{\s*([^}]*)}}/g
-    private childs: IComponent[] = []
+    private children: IComponent[] = []
     private isRendered = false
     private viewStateActions: Map<string, Subject<string>> = new Map<string, Subject<string>>()
     private baseElement: HTMLElement
     protected subscription: Subscription | null = null
+    protected onRender: (() => void)[] = []
 
     constructor(template: string) {
         this.baseElement = createElementFromTemplate(template)
@@ -24,6 +25,10 @@ export class BaseComponent implements IComponent {
     get HtmlElement(): HTMLElement {
         this.render()
         return this.baseElement
+    }
+
+    get Children(): IComponent[] {
+        return this.children
     }
 
     setInElement(element: HTMLElement): void {
@@ -41,7 +46,7 @@ export class BaseComponent implements IComponent {
                 values.unsubscribe()
             })
 
-            this.childs.forEach(element => {
+            this.children.forEach(element => {
                 element.remove()
             })
             this.baseElement.remove()
@@ -52,6 +57,7 @@ export class BaseComponent implements IComponent {
         if (!this.isRendered) {
             this.compileTemplate()
             this.isRendered = true
+            this.onRender.forEach(f => f())
         }
     }
     protected setState(func: () => void = () => { }): void {
@@ -66,27 +72,28 @@ export class BaseComponent implements IComponent {
         }
     }
 
-    protected removeLastChild(type: string): void {
-        if (this.childs.length > 0) {
-            const component = this.childs.pop()
+    protected removeLastChild(): void {
+        if (this.children.length > 0) {
+            const component = this.children.pop()
             component?.remove()
         }
     }
 
-    protected focus(): void {
-        if (this.baseElement) {
-            this.baseElement.focus()
+    protected focus(className: string): void {
+        const element = this.getElement(className)
+        if (element) {
+            element.focus()
         }
     }
-
-    protected onClick(func: (e: MouseEvent) => void): void {
-        if (this.baseElement) {
-            this.baseElement.addEventListener('click', func)
+    protected on<K extends keyof HTMLElementEventMap>(type: K, className: string, func: (elemnet: HTMLElement, e: HTMLElementEventMap[K]) => void): void {
+        const element = this.getElement(className)
+        if (element) {
+            element.addEventListener(type, (e) => func(element, e))
         }
     }
 
     protected append(component: IComponent, innerClass: string | null = null): void {
-        this.childs.push(component)
+        this.children.push(component)
         if (innerClass) {
             this.render()
             const collectionZone = this.baseElement!.getElementsByClassName(innerClass)[0] as HTMLElement
@@ -97,15 +104,22 @@ export class BaseComponent implements IComponent {
     }
 
     protected insertOrReplace(index: number, component: IComponent, innerClass: string | null = null): void {
-        if (index >= this.childs.length) {
+        if (index >= this.children.length) {
             this.append(component, innerClass)
         } else {
-            const oldcomponet = this.childs[index]
+            const oldcomponet = this.children[index]
             if (oldcomponet.IsRendered) {
                 oldcomponet.HtmlElement.insertAdjacentElement('afterend', component.HtmlElement)
             }
             oldcomponet.remove()
-            this.childs[index] = component
+            this.children[index] = component
+        }
+    }
+
+    protected removeOffSetElements(offset: number): void {
+        while (offset > 0) {
+            this.removeLastChild()
+            offset--
         }
     }
 
@@ -114,13 +128,19 @@ export class BaseComponent implements IComponent {
         this.HtmlElement.replaceChild(component.HtmlElement, element)
     }
 
-    protected insertInClass(className: string, element: HTMLElement) {
+    protected insertInClass(className: string, element: HTMLElement): void {
         const node = this.baseElement.getElementsByClassName(className)[0]!
         if (node) {
             while (node.firstChild) {
                 node.removeChild(node.lastChild!)
             }
             node.appendChild(element)
+        }
+    }
+
+    private getElement(className: string): HTMLElement | undefined {
+        if (this.baseElement) {
+            return this.baseElement.getElementsByClassName(className)[0] as HTMLElement
         }
     }
 

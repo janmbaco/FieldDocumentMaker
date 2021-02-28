@@ -35,20 +35,15 @@ export class ZoneComponent extends BaseComponent {
                 if (createNew || mustReplace) {
                     const component = this.factory.create(model)
                     if (component) {
-                        this.insertOrReplace(idx, component, "subzone-collection")
+                        this.insertOrReplace(idx, component, 'subzone-collection')
                     }
                 }
                 idx++
             })
-            this.removeOffSetElements(this.type, this.elements.length - elements.length)
+            this.removeOffSetElements(this.elements.length - elements.length)
             this.elements = elements
         }
     }
 
-    protected removeOffSetElements(type: string, offset: number): void {
-        while (offset > 0) {
-            this.removeLastChild(type)
-            offset--
-        }
-    }
+
 }

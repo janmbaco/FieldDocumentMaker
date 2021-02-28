@@ -95,6 +95,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\BindingFieldExtension.cs" />
     <Compile Include="Extensions\ListExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -109,7 +110,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Window\TreeBranch\TreeBranchVMDataSource.cs" />
+    <Compile Include="Window\TreeBranch\TreeBranchVMItemSource.cs" />
     <Compile Include="Window\WebBrowser\EditorModels\FieldModel.cs" />
     <Compile Include="Window\WebBrowser\EditorModels\SubZoneModel.cs" />
     <Compile Include="Window\WebBrowser\EditorModels\ZoneModel.cs" />

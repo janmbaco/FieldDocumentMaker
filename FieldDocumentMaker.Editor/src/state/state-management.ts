@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs'
 import { inject, injectable } from 'tsyringe'
 import { Autobind } from '../decorators/autobind'
 import { AppState } from './app-state'
+import { ChangeFieldValue } from './fields/field-actions'
 import { FieldModel } from './fields/field-model'
 import { ToogleLoaded } from './loading/loading-actions'
 import { IReducer } from './reducer-interface'
@@ -110,6 +111,12 @@ export class StateManagement implements IStateManagement {
             return null
         } else {
             return fields[idx]
+        }
+    }
+
+    getChangeFieldValueExecute(field: FieldModel): (newValue: string) => void {
+        return (newValue: string) => {
+            this.store.dispatch(ChangeFieldValue({ field, newValue }))
         }
     }
 

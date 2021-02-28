@@ -12,4 +12,5 @@ export interface IStateManagement {
     getFieldModelObservable(f: FieldModel): Observable<FieldModel>
     getSubZoneModelObservable(s: SubZoneModel): Observable<SubZoneModel>
     getFieldByBind(bind: string): FieldModel | null
+    getChangeFieldValueExecute(field: FieldModel): (newValue: string) => void
 }

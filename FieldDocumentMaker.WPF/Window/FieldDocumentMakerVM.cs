@@ -14,7 +14,7 @@ namespace FieldDocumentMaker.WPF.Window
 
         private IWpfWebBrowser webBrowser;
 
-        public List<TreeBranchVM> TreeBranchVM { get; }
+        public List<TreeBranchVMItemSource> TreeBranchItemSource { get; }
 
 
         public string Address
@@ -34,9 +34,9 @@ namespace FieldDocumentMaker.WPF.Window
             } 
         }
 
-        internal FieldDocumentMakerVM(List<TreeBranchVM> treeBranch)
+        internal FieldDocumentMakerVM(List<TreeBranchVMItemSource> treeBranch)
         {
-            this.TreeBranchVM = treeBranch;
+            this.TreeBranchItemSource = treeBranch;
         }
 
     }

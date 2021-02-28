@@ -28,9 +28,9 @@ namespace FieldDocumentMaker.WPF.Window.WebBrowser
             return Newtonsoft.Json.JsonConvert.SerializeObject(this.fieldDocumentMakerService.GetZones().ToZoneModels());
         }
 
-        public FieldModel IntercepFieldChange(FieldModel field, string newValue)
+        public FieldModel InterceptFieldChange(FieldModel field, string newValue)
         {
-            return field;
+            return fieldDocumentMakerService.ChangeValue(field.bind, newValue).ToFieldModel();
         }
 
     }

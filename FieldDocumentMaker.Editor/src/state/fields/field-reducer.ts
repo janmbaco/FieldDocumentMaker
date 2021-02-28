@@ -11,8 +11,8 @@ export class FieldReducer implements IReducer<FieldModel[]> {
   constructor() {
     this.reducer = createReducer(initialState, {
       [LoadFields.type]: (_, action: PayloadAction<FieldModel[]>) => this.Load(action.payload),
-      [ChangeFieldValue.type]: (state, action: PayloadAction<FieldModel>) => {
-        return state.map(field => field.bind === action.payload.bind ? this.ChangeFieldValue(field, action.payload.value) : field)
+      [ChangeFieldValue.type]: (state, action: PayloadAction<{ field: FieldModel, newValue: string }>) => {
+        return state.map(field => field.bind === action.payload.field.bind ? this.ChangeFieldValue(field, action.payload.newValue) : field)
       }
     })
   }

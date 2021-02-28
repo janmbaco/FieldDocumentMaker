@@ -98,6 +98,7 @@
     <Compile Include="Domain\Entities\Tree\interfaces\IEntityChild.cs" />
     <Compile Include="Domain\Entities\Tree\interfaces\IEntityParent.cs" />
     <Compile Include="Domain\Entities\Zone.cs" />
+    <Compile Include="Domain\Services\BindingFieldObserver.cs" />
     <Compile Include="Domain\Services\FieldDocumentMakerService.cs" />
     <Compile Include="Domain\Services\IFieldDocumentMakerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

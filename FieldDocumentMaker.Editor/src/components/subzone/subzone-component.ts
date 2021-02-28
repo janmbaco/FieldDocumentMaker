@@ -18,6 +18,12 @@ export class SubZoneComponent extends BaseComponent {
     constructor(paragraphObservable: Observable<SubZoneModel>, fieldFactory: IComponentFactory<FieldBindModel>) {
         super(view as string)
         this.fieldFactory = fieldFactory
+
+        this.on('keypress', 'content', (h, e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault()
+            }
+        })
         this.subscription = paragraphObservable.pipe(distinctUntilChanged()).subscribe(paragraph => {
             if (paragraph.template !== this.template) {
                 this.setState(() => {

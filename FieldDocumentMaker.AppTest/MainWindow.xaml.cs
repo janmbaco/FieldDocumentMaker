@@ -53,25 +53,41 @@ namespace FieldDocumentMaker.AppTest
                 }
             };
 
-            FieldDocumentMakerDataContextFactory factory = new FieldDocumentMakerDataContextFactory(new TreeBranchVMFactory());
+
             var entityTree = curriculum.ToEntityTree();
             var document = new Document { Zones = new List<Zone>() {
                 new Zone
                 {
-                    Id = new Guid(),
+                    Id = Guid.NewGuid(),
                     Name = "Hola mundo!",
                     SubZones = new List<SubZone>()
                     {
                         new SubZone
                         {
-                            Id = new Guid(),
+                            Id = Guid.NewGuid(),
                             Template = "<p>Hola <field bind='Curriculum.Person.Nombre' style=''></field>!<p>"
                         }
                     }
 
                 }
-            }};
+                , new Zone
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "otra zone",
+                    SubZones = new List<SubZone>()
+                    {
+                        new SubZone
+                        {
+                            Id = Guid.NewGuid(),
+                            Template = "<p>repito el campo <field bind='Curriculum.Person.Nombre' style=''></field>  y añado apellidos <field bind='Curriculum.Person.PrimerApellido' style=''></field><field bind='Curriculum.Person.SegundoAPellido' style=''></field><p>"
+                        }
+                    }
+
+                }
+            }
+            };
             var service = new FieldDocumentMakerService(entityTree, document);
+            FieldDocumentMakerDataContextFactory factory = new FieldDocumentMakerDataContextFactory(new TreeBranchVMFactory(service));
             this.Control.DataContext = factory.Create(service);
             
         }
