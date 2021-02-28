@@ -1,19 +1,15 @@
 ﻿using FieldDocumentMaker.Library.Domain.Entities.Tree;
-using FieldDocumentMaker.Library.Domain.Entities.Tree.Interfaces;
 using System.Collections.Generic;
-using System.Reflection;
 
-namespace FieldDocumentMaker.WPF.ViewModel.TreeBranch
+namespace FieldDocumentMaker.WPF.Window.TreeBranch
 {
     public class TreeBranchVMFactory
     {
-
-
         public List<TreeBranchVM> CreateVM(EntityTree entity)
         {
             List<TreeBranchVM> result = new List<TreeBranchVM>();
 
-            foreach (EntityBranch branch in entity.Children)
+            foreach (EntityBranch branch in entity.GetChildren<EntityBranch>())
             {
                 result.Add(this.CreateVM(branch));
             }
@@ -26,11 +22,11 @@ namespace FieldDocumentMaker.WPF.ViewModel.TreeBranch
             string name = entity.Name;
             List<TreeBranchVM> children = new List<TreeBranchVM>();
 
-            foreach (EntityLeaf branch in entity.Leaves)
+            foreach (EntityLeaf branch in entity.GetChildren<EntityLeaf>())
             {
                 children.Add(this.CreateVM(branch));
             }
-            foreach (EntityBranch branch in entity.Branches)
+            foreach (EntityBranch branch in entity.GetChildren<EntityBranch>())
             {
                 children.Add(this.CreateVM(branch));
             }

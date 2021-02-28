@@ -6,8 +6,6 @@ namespace FieldDocumentMaker.Library.Domain.Entities.Styles
     {
         public FieldType FieldType { get; set; }
 
-        public LetterCase LetterCase { get; set; }
-
         public bool  Bold { get; set; }
         
         public bool Italic { get; set; }

@@ -1,9 +1,11 @@
 ﻿using FieldDocumentMaker.AppTest.Extensions;
 using FieldDocumentMaker.AppTest.Models;
+using FieldDocumentMaker.Library.Domain.Entities;
 using FieldDocumentMaker.Library.Domain.Entities.Tree;
 using FieldDocumentMaker.Library.Domain.Entities.Tree.Interfaces;
-using FieldDocumentMaker.WPF.ViewModel;
-using FieldDocumentMaker.WPF.ViewModel.TreeBranch;
+using FieldDocumentMaker.Library.Domain.Services;
+using FieldDocumentMaker.WPF.Window;
+using FieldDocumentMaker.WPF.Window.TreeBranch;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,9 +53,26 @@ namespace FieldDocumentMaker.AppTest
                 }
             };
 
-            FieldDocumentMakerVMFactory facotry = new FieldDocumentMakerVMFactory(new TreeBranchVMFactory());
-            var entityTruee = curriculum.ToEntityTree();
-            this.Control.DataContext = facotry.CreateVM(entityTruee);
+            FieldDocumentMakerDataContextFactory factory = new FieldDocumentMakerDataContextFactory(new TreeBranchVMFactory());
+            var entityTree = curriculum.ToEntityTree();
+            var document = new Document { Zones = new List<Zone>() {
+                new Zone
+                {
+                    Id = new Guid(),
+                    Name = "Hola mundo!",
+                    SubZones = new List<SubZone>()
+                    {
+                        new SubZone
+                        {
+                            Id = new Guid(),
+                            Template = "<p>Hola <field bind='Curriculum.Person.Nombre' style=''></field>!<p>"
+                        }
+                    }
+
+                }
+            }};
+            var service = new FieldDocumentMakerService(entityTree, document);
+            this.Control.DataContext = factory.Create(service);
             
         }
 

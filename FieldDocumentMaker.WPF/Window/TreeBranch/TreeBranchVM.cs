@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 
 
-namespace FieldDocumentMaker.WPF.ViewModel.TreeBranch
+namespace FieldDocumentMaker.WPF.Window.TreeBranch
 {
     public class TreeBranchVM
     {

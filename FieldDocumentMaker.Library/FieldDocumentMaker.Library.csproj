@@ -72,20 +72,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Entities\Styles\Types\FieldTypeFloat.cs" />
+    <Compile Include="Domain\Entities\Styles\Types\FieldTypeImage.cs" />
+    <Compile Include="Domain\Entities\Styles\Types\FieldTypeText.cs" />
+    <Compile Include="Domain\Entities\Tree\EntityParentBase.cs" />
     <Compile Include="Domain\Entities\Values\ComboValues.cs" />
     <Compile Include="Domain\Entities\Values\ConditionalValue.cs" />
     <Compile Include="Domain\Entities\Fields\interfaces\IField.cs" />
-    <Compile Include="Domain\Entities\Styles\LetterCase.cs" />
     <Compile Include="Domain\Entities\Fields\ConditionalField.cs" />
     <Compile Include="Domain\Entities\Document.cs" />
     <Compile Include="Domain\Entities\Fields\BindingField.cs" />
-    <Compile Include="Domain\Entities\FieldsSet.cs" />
+    <Compile Include="Domain\Entities\SubZone.cs" />
     <Compile Include="Domain\Entities\Styles\Style.cs" />
     <Compile Include="Domain\Entities\Styles\Types\FieldType.cs" />
     <Compile Include="Domain\Entities\Styles\Types\FieldTypeCombo.cs" />
     <Compile Include="Domain\Entities\Styles\Types\FieldTypeDate.cs" />
     <Compile Include="Domain\Entities\Styles\Types\FieldTypeEnum.cs" />
-    <Compile Include="Domain\Entities\Styles\Types\FieldTypeNumeric.cs" />
+    <Compile Include="Domain\Entities\Styles\Types\FieldTypeInteger.cs" />
     <Compile Include="Domain\Entities\State.cs" />
     <Compile Include="Domain\Entities\Tree\EntityBase.cs" />
     <Compile Include="Domain\Entities\Tree\EntityBranch.cs" />
@@ -95,14 +98,14 @@
     <Compile Include="Domain\Entities\Tree\interfaces\IEntityChild.cs" />
     <Compile Include="Domain\Entities\Tree\interfaces\IEntityParent.cs" />
     <Compile Include="Domain\Entities\Zone.cs" />
+    <Compile Include="Domain\Services\FieldDocumentMakerService.cs" />
+    <Compile Include="Domain\Services\IFieldDocumentMakerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

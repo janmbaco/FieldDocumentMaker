@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace FieldDocumentMaker.WPF
+namespace FieldDocumentMaker.WPF.Window
 {
     /// <summary>
     /// Lógica de interacción para UserControl1.xaml

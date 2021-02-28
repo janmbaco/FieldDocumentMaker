@@ -59,5 +59,40 @@ namespace FieldDocumentMaker.WPF.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /*! For license information please see bundle.js.LICENSE.txt */
+        ///(()=&gt;{var t={4634:(t,e,n)=&gt;{&quot;use strict&quot;;function r(t){for(var e=arguments.length,n=Array(e&gt;1?e-1:0),r=1;r&lt;e;r++)n[r-1]=arguments[r];throw Error(&quot;[Immer] minified error nr: &quot;+t+(n.length?&quot; &quot;+n.map((function(t){return&quot;&apos;&quot;+t+&quot;&apos;&quot;})).join(&quot;,&quot;):&quot;&quot;)+&quot;. Find the full error at: https://bit.ly/3cXEKWf&quot;)}function i(t){return!!t&amp;&amp;!!t[q]}function o(t){return!!t&amp;&amp;(function(t){if(!t||&quot;object&quot;!=typeof t)return!1;var e=Object.getPrototypeOf(t);return!e||e===Obj [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string bundle {
+            get {
+                return ResourceManager.GetString("bundle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;es&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+        ///    &lt;meta charser=&apos;utf-8&apos;&gt;
+        ///    &lt;title&gt;Field Document Maker&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body style=&quot;background-color: #666;&quot;&gt;
+        ///    &lt;script type=&quot;text/javascript&quot;&gt;
+        ///        (async () =&gt;
+        ///        {      
+        ///			await cefSharp.bindObjectAsync(&quot;bound&quot;);
+        ///			alert(bound.repeat(&quot;hi &quot;, 5));
+        ///})();
+        ///    &lt;/script&gt;
+        ///&lt;/body&gt;
+        ///&lt;/html&gt;.
+        /// </summary>
+        internal static string HtmlPage {
+            get {
+                return ResourceManager.GetString("HtmlPage", resourceCulture);
+            }
+        }
     }
 }

@@ -4,7 +4,6 @@ namespace FieldDocumentMaker.Library.Domain.Entities.Tree
 {
     public abstract class EntityBase 
     {
- 
         public string Id { get; set; }
 
         public string Name { get; set; }

@@ -1,5 +1,6 @@
 ﻿using FieldDocumentMaker.AppTest.Models;
 using FieldDocumentMaker.Library.Domain.Entities.Styles;
+using FieldDocumentMaker.Library.Domain.Entities.Styles.Types;
 using FieldDocumentMaker.Library.Domain.Entities.Tree;
 using FieldDocumentMaker.Library.Domain.Entities.Tree.Interfaces;
 using System;
@@ -24,7 +25,7 @@ namespace FieldDocumentMaker.AppTest.Extensions
 
             foreach (var item in curriculum.GetType().GetProperties())
             {
-                result.Children.Add(GetEntityBranch(item, result, item.GetValue(curriculum)));
+                result.AddChild(GetEntityBranch(item, result, item.GetValue(curriculum)));
             }
                 
             return result;
@@ -50,11 +51,11 @@ namespace FieldDocumentMaker.AppTest.Extensions
                     Type itemType = item.GetType();
                     if (itemType == typeof(string) || itemType == typeof(int?) || itemType == typeof(DateTime?))
                     {
-                        result.Leaves.Add(GetEntityLeaf(string.Format("[{0}]", index), string.Format("{0}[{1}]", result.Name, index), result, item));
+                        result.AddChild(GetEntityLeaf(string.Format("[{0}]", index), string.Format("{0}[{1}]", result.Name, index), result, item));
                     }
                     else
                     {
-                        result.Branches.Add(GetEntityBranch(string.Format("[{0}]", index), string.Format("{0}", itemType.GetCustomAttribute<DisplayNameAttribute>().DisplayName), result, item));
+                        result.AddChild(GetEntityBranch(string.Format("[{0}]", index), string.Format("{0}", itemType.GetCustomAttribute<DisplayNameAttribute>().DisplayName), result, item));
                     }
                     index++;
                 }
@@ -66,11 +67,11 @@ namespace FieldDocumentMaker.AppTest.Extensions
                     object entity = item.GetValue(obj);
                     if (item.PropertyType == typeof(string) || item.PropertyType == typeof(int?) || item.PropertyType == typeof(DateTime?))
                     {
-                        result.Leaves.Add(GetEntityLeaf(item, result, entity));
+                        result.AddChild(GetEntityLeaf(item, result, entity));
                     }
                     else
                     {
-                        result.Branches.Add(GetEntityBranch(item, result, entity));
+                        result.AddChild(GetEntityBranch(item, result, entity));
                     }
                 }
             }
@@ -92,14 +93,17 @@ namespace FieldDocumentMaker.AppTest.Extensions
             if (result.Type == typeof(string))
             {
                 result.Value = obj as string;
+                result.Style = new Style { FieldType = new FieldTypeText() };
             }
             else if (result.Type == typeof(int))
             {
                 result.Value = string.Format("{0:N0}", obj as int?);
+                result.Style = new Style { FieldType = new FieldTypeInteger() };
             }
             else if(result.Type == typeof(DateTime))
             {
                 result.Value = string.Format("{0:dd/MM/yyyy}", obj as DateTime?);
+                result.Style = new Style { FieldType = new FieldTypeDate() };
             }
 
             return result;

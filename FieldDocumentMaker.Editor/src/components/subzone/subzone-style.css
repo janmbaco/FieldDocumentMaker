@@ -1,0 +1,30 @@
+.subzone {
+	margin: 0.25cm;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #666;
+	background-color: #fff;
+}
+.subzone > .top {
+	height: 12pt;
+}
+.subzone > .bottom {
+	height: 6pt;
+}
+.subzone.reborder {
+	border-color: #999;
+}
+
+.subzone.dragging {
+	background-color: aquamarine;
+}
+.subzone .content {
+	padding-left: 0.25cm;
+	padding-right: 0.25cm;
+	outline: 0px solid transparent;
+	color: #333;
+}
+
+.subzone.draggable {
+	cursor: move;
+}

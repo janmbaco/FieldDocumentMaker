@@ -1,5 +1,5 @@
 ﻿using CefSharp;
-using CefSharp.Wpf.HwndHost;
+using CefSharp.Wpf;
 using System;
 using System.IO;
 using System.Reflection;
