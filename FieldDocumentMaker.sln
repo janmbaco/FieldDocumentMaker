@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldDocumentMaker.WPF", "F
 		{79D995C7-3D41-4194-8CFF-E5F6F5094872} = {79D995C7-3D41-4194-8CFF-E5F6F5094872}
 	EndProjectSection
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "FieldDocumentMaker.HtmlCanvas", "FieldDocumentMaker.HtmlCanvas\FieldDocumentMaker.HtmlCanvas.njsproj", "{79D995C7-3D41-4194-8CFF-E5F6F5094872}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "FieldDocumentMaker.Editor", "FieldDocumentMaker.Editor\FieldDocumentMaker.Editor.njsproj", "{79D995C7-3D41-4194-8CFF-E5F6F5094872}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

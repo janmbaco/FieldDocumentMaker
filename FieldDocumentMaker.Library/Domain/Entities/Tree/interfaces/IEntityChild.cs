@@ -2,7 +2,6 @@
 {
     public interface IEntityChild : IEntityBase
     {
-
         IEntityParent Parent  { get; set; }
     }
 }

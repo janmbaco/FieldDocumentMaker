@@ -2,8 +2,10 @@
 {
     public enum FieldTypeEnum
     {
+        Image,
         Text,
-        Numeric,
+        Integer,
+        Float,
         Date,
         Combo,
     }

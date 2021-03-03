@@ -6,8 +6,6 @@ namespace FieldDocumentMaker.Library.Domain.Entities
     {
         public Document Document { get; set; }
 
-        public string HtmlView { get; set; }
-
         public EntityTree Entity { get; set; }
 
     }
