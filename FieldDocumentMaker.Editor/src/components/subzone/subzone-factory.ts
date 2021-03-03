@@ -2,7 +2,8 @@ import { inject, injectable } from 'tsyringe'
 import { FieldBindModel } from '../../state/fields/field-bind-model'
 import { IStateManagement } from '../../state/state-management-interface'
 import { SubZoneModel } from '../../state/subzones/subzone-model'
-import { IComponentFactory } from '../component-fatory-interface'
+import { IComponentFactory } from '../component-factory-interface'
+import { IComponent } from '../component-interface'
 import { SubZoneComponent } from './subzone-component'
 
 @injectable()
@@ -15,7 +16,7 @@ export class SubZoneFactory implements IComponentFactory<SubZoneModel> {
         this.fieldFactory = fieldFactory
     }
 
-    create(SubZoneModel: SubZoneModel): SubZoneComponent {
+    create(SubZoneModel: SubZoneModel): IComponent {
         return new SubZoneComponent(this.stateManagement.getSubZoneModelObservable(SubZoneModel), this.fieldFactory)
     }
 

@@ -4,7 +4,7 @@ import { BaseComponent } from '../base-component'
 import { Observable } from 'rxjs'
 import { ZoneModel } from '../../state/zones/zone-model'
 import { distinctUntilChanged } from 'rxjs/operators'
-import { IComponentFactory } from '../component-fatory-interface'
+import { IComponentFactory } from '../component-factory-interface'
 
 
 export class EditorComponent extends BaseComponent {

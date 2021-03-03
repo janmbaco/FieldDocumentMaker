@@ -1,5 +1,4 @@
-import { EditorComponent } from './editor-component'
-
+import { IComponent } from '../component-interface'
 export interface IEditorFactory {
-    create(): EditorComponent
+    create(): IComponent
 }

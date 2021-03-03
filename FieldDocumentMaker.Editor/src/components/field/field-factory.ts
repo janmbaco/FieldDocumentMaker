@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe'
 import { FieldBindModel } from '../../state/fields/field-bind-model'
 import { IStateManagement } from '../../state/state-management-interface'
-import { IComponentFactory } from '../component-fatory-interface'
+import { IComponentFactory } from '../component-factory-interface'
+import { IComponent } from '../component-interface'
 import { ComboFieldComponent } from './combo-field/combo-field-component'
 import { DateFieldComponent } from './date-field/date-field-component'
 import { FieldComponent } from './field-component'
@@ -19,7 +20,7 @@ export class FieldFactory implements IComponentFactory<FieldBindModel> {
         this.stateManagement = stateManagement
     }
 
-    create(model: FieldBindModel): FieldComponent | null {
+    create(model: FieldBindModel): IComponent | null {
         const field = this.stateManagement.getFieldByBind(model.bind)
         if (field) {
             switch (field.type) {

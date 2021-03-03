@@ -2,7 +2,8 @@ import { inject, injectable } from 'tsyringe'
 import { IStateManagement } from '../../state/state-management-interface'
 import { SubZoneModel } from '../../state/subzones/subzone-model'
 import { ZoneModel } from '../../state/zones/zone-model'
-import { IComponentFactory } from '../component-fatory-interface'
+import { IComponentFactory } from '../component-factory-interface'
+import { IComponent } from '../component-interface'
 import { ZoneComponent } from './zone-component'
 
 @injectable()
@@ -16,7 +17,7 @@ export class ZoneFactory implements IComponentFactory<ZoneModel>{
         this.subzoneFactory = subzoneFactory
     }
 
-    create(zone: ZoneModel): ZoneComponent {
+    create(zone: ZoneModel): IComponent {
         return new ZoneComponent(this.stateManagement.getZoneModelObservable(zone), this.subzoneFactory)
     }
 

@@ -4,7 +4,7 @@ import { BaseComponent } from '../base-component'
 import { ZoneModel, ZoneColors } from '../../state/zones/zone-model'
 import { Observable } from 'rxjs'
 import { distinctUntilChanged } from 'rxjs/operators'
-import { IComponentFactory } from '../component-fatory-interface'
+import { IComponentFactory } from '../component-factory-interface'
 import { SubZoneModel } from '../../state/subzones/subzone-model'
 
 export class ZoneComponent extends BaseComponent {

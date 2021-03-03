@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe'
 import { IStateManagement } from '../../state/state-management-interface'
 import { ZoneModel } from '../../state/zones/zone-model'
-import { IComponentFactory } from '../component-fatory-interface'
+import { IComponentFactory } from '../component-factory-interface'
+import { IComponent } from '../component-interface'
 import { EditorComponent } from './editor-component'
 import { IEditorFactory } from './editor-factory-interface'
 
@@ -14,7 +15,7 @@ export class EditorFactory implements IEditorFactory {
         this.stateManagement = stateManagement
         this.zoneFactory = zoneFactory
     }
-    create(): EditorComponent {
+    create(): IComponent {
         return new EditorComponent(this.stateManagement.getZonesObservable(), this.zoneFactory)
     }
 }
