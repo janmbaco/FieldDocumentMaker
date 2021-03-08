@@ -30,13 +30,15 @@ namespace FieldDocumentMaker.AppTest
                     Nombre = "José",
                     PrimerApellido = "nose",
                     SegundoAPellido = "nose",
+                    Email = "yubu@yuhu.es",
+                    Telefono = "612 123 456",
                     Direccion = new Direccion
                     {
                         Pais = "España",
                         Provincia = "Murica",
                         CodigoPostal = 30334,
                         Numero = 4,
-                        Ciudad = "Las Palas",
+                        Poblacion = "Las Palas",
                         Via = "C/ Cementerio",
                     }
                 },
@@ -59,13 +61,17 @@ namespace FieldDocumentMaker.AppTest
                 new Zone
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Hola mundo!",
+                    Name = "Información Personal",
                     SubZones = new List<SubZone>()
                     {
                         new SubZone
                         {
                             Id = Guid.NewGuid(),
-                            Template = "<p>Hola <field bind='Curriculum.Person.Nombre' style=''></field>!<p>"
+                            Template = string.Concat("<div style='margin-left:5cm;text-align:left;line-height:auto'><p><h1><field bind='Curriculum.Person.Nombre' style=''></field><field bind='Curriculum.Person.PrimerApellido' style=''></field><field bind='Curriculum.Person.SegundoAPellido' style=''></field></h1>",
+                                                     "<field bind='Curriculum.Person.Direccion.Poblacion' style=''></field><br />",
+                                                     "<field bind='Curriculum.Person.Direccion.Provincia' style=''></field><br />",
+                                                     "<field bind='Curriculum.Person.Telefono' style=''></field> | <field bind='Curriculum.Person.Email' style=''></field></p>",
+                                                     "<p style='margin-right:7cm'>Amplia experiencia en análisis, diseño y programación de aplicaciones, especialmente bajo tecnología .Net</p></div>")
                         }
                     }
 
@@ -73,13 +79,47 @@ namespace FieldDocumentMaker.AppTest
                 , new Zone
                 {
                     Id = Guid.NewGuid(),
-                    Name = "otra zone",
+                    Name = "Competencias",
                     SubZones = new List<SubZone>()
                     {
                         new SubZone
                         {
                             Id = Guid.NewGuid(),
-                            Template = "<p>repito el campo <field bind='Curriculum.Person.Nombre' style=''></field>  y añado apellidos <field bind='Curriculum.Person.PrimerApellido' style=''></field><field bind='Curriculum.Person.SegundoAPellido' style=''></field><p>"
+                            Template = "<p>Competencias</p>"
+                        },
+                          new SubZone
+                        {
+                            Id = Guid.NewGuid(),
+                            Template = "<p>Me dedico al análisis y desarrollo de aplicaciones, profesionalmente, desde 2006. Realizando la mayoría de los proyectos desde cero y estando presente en todo el ciclo de vida del software. El análisis orgánico y el diseño estructural es un mundo que me apasiona.</p>"
+                        },
+                            new SubZone
+                        {
+                            Id = Guid.NewGuid(),
+                            Template = "<p>Mi principal herramienta es Visual Studio con todo los que conlleva, aunque periféricamente también utilizo Elastic Search para generar índices, Kafka para gestionar colas, bases de datos MySQL, etc...</p>"
+                        }
+                    }
+
+                }
+                 , new Zone
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Experiencia Profesional",
+                    SubZones = new List<SubZone>()
+                    {
+                        new SubZone
+                        {
+                            Id = Guid.NewGuid(),
+                            Template = "<p>Experiencia Profesional</p>"
+                        },
+                          new SubZone
+                        {
+                            Id = Guid.NewGuid(),
+                            Template = "<p style='font-weight: bold;'><field bind='Curriculum.ExperienciasLaborales.[0].FechaInicio' style='font-weight: bold;'></field> - <field bind='Curriculum.ExperienciasLaborales.[0].Empresa' style='font-weight: bold;'></field></p>"
+                        },
+                        new SubZone
+                        {
+                            Id = Guid.NewGuid(),
+                            Template = "<p><field bind='Curriculum.ExperienciasLaborales.[0].Puesto' style=''></field></p>"
                         }
                     }
 
@@ -91,8 +131,5 @@ namespace FieldDocumentMaker.AppTest
             this.Control.DataContext = factory.Create(service);
             
         }
-
-
-
     }
 }

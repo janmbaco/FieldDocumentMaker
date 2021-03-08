@@ -1,5 +1,4 @@
-import { FieldBindModel } from "../fields/field-bind-model"
-import { SubZoneModel } from "../subzones/subzone-model"
+import { SubZoneModel } from '../subzones/subzone-model'
 
 export type ZoneColors = 'darkred' | 'ligthgreen' | 'darkblue' | 'orange' | 'darkgreen' | 'middlered'
 

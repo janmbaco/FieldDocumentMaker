@@ -3,19 +3,18 @@ import view from './subzone-template.html'
 import { BaseComponent } from '../base-component'
 import { Observable } from 'rxjs'
 import { distinctUntilChanged } from 'rxjs/operators'
-import { createElementFromTemplate } from '../shared/document-extension'
 import { IComponentFactory } from '../component-factory-interface'
 import { IComponent } from '../component-interface'
 import { SubZoneModel } from '../../state/subzones/subzone-model'
-import { FieldBindModel } from '../../state/fields/field-bind-model'
+import { FieldBind } from '../../state/fields/field-model'
 
 
 export class SubZoneComponent extends BaseComponent {
 
     private template = ''
-    private fieldFactory: IComponentFactory<FieldBindModel>
+    private fieldFactory: IComponentFactory<FieldBind>
 
-    constructor(paragraphObservable: Observable<SubZoneModel>, fieldFactory: IComponentFactory<FieldBindModel>) {
+    constructor(subZoneObservable: Observable<SubZoneModel>, fieldFactory: IComponentFactory<FieldBind>) {
         super(view as string)
         this.fieldFactory = fieldFactory
 
@@ -24,18 +23,24 @@ export class SubZoneComponent extends BaseComponent {
                 e.preventDefault()
             }
         })
-        this.subscription = paragraphObservable.pipe(distinctUntilChanged()).subscribe(paragraph => {
+
+        this.subscription.push(subZoneObservable.pipe(distinctUntilChanged()).subscribe(paragraph => {
             if (paragraph.template !== this.template) {
                 this.setState(() => {
                     this.template = paragraph.template
                     this.insertInClass('content', this.compileInnerHtmlTemplate())
                 })
             }
-        })
+        }))
     }
 
     compileInnerHtmlTemplate(): HTMLElement {
-        const element = createElementFromTemplate(this.template)
+        const element = document.createElementFromTemplate(this.template)
+        this.compileInnerElement(element)
+        return element
+    }
+
+    compileInnerElement(element: Element): void {
         Array.from(element.children).forEach(child => {
             if (child.nodeName === 'FIELD') {
                 let field: IComponent | null = null
@@ -44,18 +49,18 @@ export class SubZoneComponent extends BaseComponent {
                 if (bind && style) {
                     field = this.fieldFactory.create({ bind: bind.value, style: style.value })
                     if (field) {
-                        this.append(field)
+                        this.appendChild(field)
                     }
                 }
                 if (field) {
-                    this.append(field)
+                    this.appendChild(field)
                     child.replaceWith(field.HtmlElement)
                 } else {
-                    this.SubZoneElement.removeChild(child)
+                    element.removeChild(child)
                 }
+            } else {
+                this.compileInnerElement(child)
             }
         })
-        return element
-
     }
 }

@@ -1,16 +1,14 @@
 import './text-field-style.css'
-import view from './text-field-template.html'
 import { FieldComponent } from '../field-component'
 import { Observable } from 'rxjs'
 import { FieldModel } from '../../../state/fields/field-model'
 
 export class TextFieldComponent extends FieldComponent {
 
-    private changeValue: (newValue: string) => void
 
-    constructor(fieldObservable: Observable<FieldModel>, changeValue: (newValue: string) => void) {
-        super(fieldObservable, view as string)
-        this.changeValue = changeValue
+    constructor(fieldObservable: Observable<FieldModel>, valueChanger: (newValue: string) => void) {
+        super(fieldObservable, valueChanger)
+
         this.on('click', 'value', (h, e) => {
             if (h.contentEditable !== 'true') {
                 h.contentEditable = 'true'
@@ -29,9 +27,19 @@ export class TextFieldComponent extends FieldComponent {
         this.on('keypress', 'value', (h, e) => {
             if (e.key === 'Enter') {
                 e.preventDefault()
-                this.changeValue(h.innerText)
+                this.ValueChanger(h.innerText)
 
             }
         })
     }
+
+    public get Type(): string {
+        return 'text'
+    }
+    protected setFieldDecoration(): void {
+        if (this.IsRendered) {
+            this.HtmlElement.classList.add('field-text')
+        }
+    }
+
 }

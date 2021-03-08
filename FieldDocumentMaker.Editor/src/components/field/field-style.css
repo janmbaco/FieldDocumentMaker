@@ -1,0 +1,32 @@
+.field {
+	border: 1px solid gray;
+	border-radius: 4px;
+	position: relative;
+	min-width: 45px;
+	text-align: center;
+}
+
+.field > .label {
+	display: none;
+	position: absolute;
+	top: -12px;
+	background-color: wheat;
+	border: solid 1px gray;
+	font-size: 8pt;
+	left: 2px;
+	line-height: 14px;
+	user-select: none;
+	z-index: 999;
+}
+
+.field > .label.show {
+	display: block;
+}
+
+.field > .value {
+	display: inline;
+	padding-left: 3px;
+	padding-right: 3px;
+	user-select: text;
+	outline: 0px solid transparent;
+}

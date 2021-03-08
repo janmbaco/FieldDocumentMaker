@@ -30,7 +30,7 @@ namespace FieldDocumentMaker.WPF.Window.WebBrowser
 
         public FieldModel InterceptFieldChange(FieldModel field, string newValue)
         {
-            return fieldDocumentMakerService.ChangeValue(field.bind, newValue).ToFieldModel();
+            return fieldDocumentMakerService.ChangeValue(field.@base.bind, newValue).ToFieldModel();
         }
 
     }

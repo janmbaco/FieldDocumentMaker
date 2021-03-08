@@ -1,20 +1,18 @@
 .editor {
-    font-family: 'Calibri';
-    font-size: 12pt;
-    text-align: justify;
-    line-height: 24pt;
-    margin-top: 1cm;
-    margin-bottom: 1cm;
-    justify-content: center;
+	font-family: "Calibri";
+	font-size: 12pt;
+	text-align: justify;
+	line-height: 24pt;
+	margin-top: 1cm;
+	margin-bottom: 1cm;
+	justify-content: center;
 }
 
-.editor > .create-zone, .editor > .zone-collection{
-    min-width: 21cm; 
-    max-width: 21cm;
-    margin-right: auto;
-    margin-left: auto;
-    text-align: right;
+.editor > .create-zone,
+.editor > .zone-collection {
+	min-width: 21cm;
+	max-width: 21cm;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: right;
 }
-
-
-

@@ -1,3 +1,5 @@
+import './field-style.css'
+import view from './field-template.html'
 import { Observable } from 'rxjs'
 import { distinctUntilChanged } from 'rxjs/operators'
 import { FieldModel } from '../../state/fields/field-model'
@@ -5,47 +7,40 @@ import { BaseComponent } from '../base-component'
 
 export abstract class FieldComponent extends BaseComponent {
 
-    label = ''
-    value = ''
+    private label = ''
+    private value = ''
+    private changeValue: (newValue: string) => void
 
-    constructor(fieldObservable: Observable<FieldModel>, view: string) {
-        super(view)
-        this.subscription = fieldObservable.pipe(distinctUntilChanged()).subscribe(field => {
+    protected get ValueChanger(): (newValue: string) => void {
+        return this.changeValue
+    }
+
+    constructor(fieldObservable: Observable<FieldModel>, changeValue: (newValue: string) => void) {
+        super(view as string)
+        this.changeValue = changeValue
+        this.OnRender.push(() => this.HtmlElement.classList.add(`${this.Type}-field`))
+        this.subscription.push(fieldObservable.pipe(distinctUntilChanged()).subscribe(field => {
             this.setState(() => {
-                this.label = field.label
-                this.value = field.value
+                this.label = field.base.label
+                this.value = field.base.value
             })
+        }))
 
-            this.relocateLabel()
-        })
-
-        this.on('mouseover', 'value', (h, e) => {
+        this.on('mouseover', '', (h, e) => {
             const labelElement = this.HtmlElement.getElementsByClassName('label')[0] as HTMLElement
             if (labelElement) {
                 labelElement.classList.add('show')
             }
         })
-        this.on('mouseleave', 'value', (h, e) => {
+
+        this.on('mouseleave', '', (h, e) => {
             const labelElement = this.HtmlElement.getElementsByClassName('label')[0] as HTMLElement
             if (labelElement) {
                 labelElement.classList.remove('show')
             }
         })
-
-        this.onRender.push(() => {
-            this.relocateLabel()
-        })
-
     }
 
-    private relocateLabel(): void {
-        if (this.IsRendered) {
-            const labelElement = this.HtmlElement.getElementsByClassName('label')[0] as HTMLElement
-            if (labelElement) {
-                const width = (this.label.length * 5) + 12
-                const left = (((this.value.length * 7) + 10) / 2) - (width / 2)
-                labelElement.setAttribute('style', `width:${width}px;left:${left}px`)
-            }
-        }
-    }
+    protected abstract get Type(): string
+
 }

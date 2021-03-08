@@ -21,5 +21,11 @@ namespace FieldDocumentMaker.AppTest.Models
         [DisplayName("Dirección")]
         public Direccion Direccion { get; set; }
 
+        [DisplayName("Email")]
+        public string Email { get; set; }
+
+        [DisplayName("Teléfono")]
+        public string Telefono { get; set; }
+
     }
 }

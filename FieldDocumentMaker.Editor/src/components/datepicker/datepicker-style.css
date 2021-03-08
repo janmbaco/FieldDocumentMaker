@@ -1,0 +1,57 @@
+.datepicker {
+	position: absolute;
+	background-color: white;
+	padding: 10px;
+	z-index: 9999;
+	border: 1px solid gray;
+	border-radius: 5px;
+	right: 0px;
+	user-select: none;
+}
+
+.datepicker > .header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.datepicker > .header > span {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.datepicker > .header > .month-before,
+.datepicker > .header > .month-after {
+	cursor: pointer;
+}
+
+.datepicker > .calendar {
+	display: table;
+}
+
+.datepicker > .calendar > .week-days-collection > div {
+	display: table-cell;
+	padding: 5px;
+	max-width: 35px;
+	min-width: 35px;
+}
+
+.datepicker > .calendar > .weeks-collection > div {
+	display: table-row;
+}
+
+.datepicker > .calendar > .weeks-collection > div > div {
+	display: table-cell;
+	padding: 5px;
+	max-width: 35px;
+	min-width: 35px;
+	cursor: pointer;
+}
+
+.datepicker > .calendar .holiday {
+	color: rgb(207, 12, 12);
+}
+
+.datepicker > .calendar .currentDay {
+	border: 1px solid rgb(207, 12, 12);
+}

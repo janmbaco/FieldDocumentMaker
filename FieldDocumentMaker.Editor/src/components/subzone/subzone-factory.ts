@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe'
-import { FieldBindModel } from '../../state/fields/field-bind-model'
+import { FieldBind } from '../../state/fields/field-model'
 import { IStateManagement } from '../../state/state-management-interface'
 import { SubZoneModel } from '../../state/subzones/subzone-model'
 import { IComponentFactory } from '../component-factory-interface'
@@ -9,9 +9,9 @@ import { SubZoneComponent } from './subzone-component'
 @injectable()
 export class SubZoneFactory implements IComponentFactory<SubZoneModel> {
     stateManagement: IStateManagement
-    fieldFactory: IComponentFactory<FieldBindModel>
+    fieldFactory: IComponentFactory<FieldBind>
 
-    constructor(@inject('stateManagement') stateManagement: IStateManagement, @inject('fieldFactory') fieldFactory: IComponentFactory<FieldBindModel>) {
+    constructor(@inject('stateManagement') stateManagement: IStateManagement, @inject('fieldFactory') fieldFactory: IComponentFactory<FieldBind>) {
         this.stateManagement = stateManagement
         this.fieldFactory = fieldFactory
     }

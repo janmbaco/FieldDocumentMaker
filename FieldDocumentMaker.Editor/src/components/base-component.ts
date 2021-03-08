@@ -1,21 +1,20 @@
 import { Subject, Subscription } from 'rxjs'
-import { distinctUntilChanged, elementAt } from 'rxjs/operators'
+import { distinctUntilChanged } from 'rxjs/operators'
 import { IComponent } from './component-interface'
-import { createElementFromTemplate } from './shared/document-extension'
 
 export class BaseComponent implements IComponent {
     [i: string]: any
 
     private static nodeTextStrings = /{{\s*([^}]*)}}/g
-    private children: IComponent[] = []
+    private children: Map<string, IComponent[]> = new Map<string, IComponent[]>()
     private isRendered = false
     private viewStateActions: Map<string, Subject<string>> = new Map<string, Subject<string>>()
     private baseElement: HTMLElement
-    protected subscription: Subscription | null = null
-    protected onRender: (() => void)[] = []
+    private onRender: (() => void)[] = []
+    protected subscription: Subscription[] = []
 
     constructor(template: string) {
-        this.baseElement = createElementFromTemplate(template)
+        this.baseElement = document.createElementFromTemplate(template)
     }
 
     get IsRendered(): boolean {
@@ -27,8 +26,8 @@ export class BaseComponent implements IComponent {
         return this.baseElement
     }
 
-    get Children(): IComponent[] {
-        return this.children
+    get OnRender(): (() => void)[] {
+        return this.onRender
     }
 
     setInElement(element: HTMLElement): void {
@@ -39,7 +38,7 @@ export class BaseComponent implements IComponent {
         if (this.baseElement) {
 
             if (this.subscription) {
-                this.subscription.unsubscribe()
+                this.subscription.forEach(s => s.unsubscribe())
             }
 
             this.viewStateActions.forEach(values => {
@@ -47,9 +46,59 @@ export class BaseComponent implements IComponent {
             })
 
             this.children.forEach(element => {
-                element.remove()
+                element.forEach(e => e.remove())
             })
+            Array.from(this.children.keys()).forEach(k => this.children.delete(k))
+
             this.baseElement.remove()
+        }
+    }
+
+
+    protected appendChild(component: IComponent, innerClass: string = 'none'): void {
+
+        this.render()
+        if (!this.children.has(innerClass)) {
+            this.children.set(innerClass, [])
+        }
+        this.children.get(innerClass)?.push(component)
+
+        const collectionZone = this.getElement(innerClass)
+        if (collectionZone) {
+            collectionZone.append(component.HtmlElement)
+        }
+    }
+
+    protected removeChild(child: IComponent, className: string = 'none'): void {
+        if (this.children.has(className)) {
+            const i = this.children.get(className)!.indexOf(child)
+            if (i > -1) {
+                this.children.get(className)!.splice(i, 1)
+
+            }
+        }
+        child.remove()
+    }
+
+    protected getChildren(className: string = 'none'): IComponent[] {
+        let result: IComponent[] = []
+        if (this.children.has(className)) {
+            result = this.children.get(className)!
+        }
+        return result
+    }
+
+    protected removeLastChild(className: string = 'none'): void {
+        if (this.children.get(className)!.length > 0) {
+            const component = this.children.get(className)!.pop()
+            component?.remove()
+        }
+    }
+
+    protected clearChildren(className: string = 'none'): void {
+        if (this.children.has(className)) {
+            this.children.get(className)!.forEach(c => c.remove())
+            this.children.delete(className)
         }
     }
 
@@ -72,12 +121,6 @@ export class BaseComponent implements IComponent {
         }
     }
 
-    protected removeLastChild(): void {
-        if (this.children.length > 0) {
-            const component = this.children.pop()
-            component?.remove()
-        }
-    }
 
     protected focus(className: string): void {
         const element = this.getElement(className)
@@ -85,51 +128,21 @@ export class BaseComponent implements IComponent {
             element.focus()
         }
     }
+
     protected on<K extends keyof HTMLElementEventMap>(type: K, className: string, func: (elemnet: HTMLElement, e: HTMLElementEventMap[K]) => void): void {
-        const element = this.getElement(className)
+        let element: HTMLElement
+        if (className === '') {
+            element = this.baseElement
+        } else {
+            element = this.getElement(className)!
+        }
         if (element) {
             element.addEventListener(type, (e) => func(element, e))
         }
     }
 
-    protected append(component: IComponent, innerClass: string | null = null): void {
-        this.children.push(component)
-        if (innerClass) {
-            this.render()
-            const collectionZone = this.baseElement!.getElementsByClassName(innerClass)[0] as HTMLElement
-            if (collectionZone) {
-                collectionZone.append(component.HtmlElement)
-            }
-        }
-    }
-
-    protected insertOrReplace(index: number, component: IComponent, innerClass: string | null = null): void {
-        if (index >= this.children.length) {
-            this.append(component, innerClass)
-        } else {
-            const oldcomponet = this.children[index]
-            if (oldcomponet.IsRendered) {
-                oldcomponet.HtmlElement.insertAdjacentElement('afterend', component.HtmlElement)
-            }
-            oldcomponet.remove()
-            this.children[index] = component
-        }
-    }
-
-    protected removeOffSetElements(offset: number): void {
-        while (offset > 0) {
-            this.removeLastChild()
-            offset--
-        }
-    }
-
-    protected insertAndReplace(component: IComponent, element: Element): void {
-        this.append(component)
-        this.HtmlElement.replaceChild(component.HtmlElement, element)
-    }
-
     protected insertInClass(className: string, element: HTMLElement): void {
-        const node = this.baseElement.getElementsByClassName(className)[0]!
+        const node = this.getElement(className)
         if (node) {
             while (node.firstChild) {
                 node.removeChild(node.lastChild!)
@@ -140,7 +153,7 @@ export class BaseComponent implements IComponent {
 
     private getElement(className: string): HTMLElement | undefined {
         if (this.baseElement) {
-            return this.baseElement.getElementsByClassName(className)[0] as HTMLElement
+            return this.baseElement.classList.contains(className) ? this.baseElement : this.baseElement.getElementsByClassName(className)[0] as HTMLElement
         }
     }
 
@@ -179,12 +192,13 @@ export class BaseComponent implements IComponent {
                 if (!this.viewStateActions.has(m)) {
                     this.viewStateActions.set(m, new Subject<string>())
                 }
-                if (this[m.replace('{{', '').replace('}}', '')]) {
+                const property = m.replace('{{', '').replace('}}', '')
+                if (this.hasOwnProperty(property)) {
                     this.viewStateActions.get(m)?.pipe(distinctUntilChanged()).subscribe(_ => {
                         let result: string = mask
                         match.forEach(prop => {
                             const propName = prop.replace('{{', '').replace('}}', '')
-                            if (this[propName]) {
+                            if (this.hasOwnProperty(propName)) {
                                 result = result.replace(prop, this[propName])
                             }
                         })
