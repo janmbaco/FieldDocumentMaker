@@ -1,19 +1,17 @@
 import './datepicker-style.css'
 import view from './datepicker-template.html'
 import { BaseComponent } from '../base-component'
-import { IWeekDayComponent } from './week-day/week-day-interface'
 import { IWeekComponent } from './week/week-interface'
 import { WeekDayModel } from './week-day/week-day-model'
 import { DayModel } from './day/day-model'
 import { IComponentFactory } from '../component-factory-interface'
 import { Autobind } from '../../decorators/autobind'
 import { IComponent } from '../component-interface'
+import { IDatePickerComponent } from './datepicker-interface'
 
-export class DatepickerComponent extends BaseComponent {
+export class DatepickerComponent extends BaseComponent implements IDatePickerComponent {
 
     private monthAndYear = ''
-    private weekDays: IWeekDayComponent[] = []
-    private weeks: IWeekComponent[] = []
     private weekFactory: IComponentFactory<DayModel[]>
     private monthLabels: string[]
     private daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
@@ -67,7 +65,7 @@ export class DatepickerComponent extends BaseComponent {
         }
         this.HtmlElement.removeAttribute('style')
         component.HtmlElement.append(this.HtmlElement)
-        this.adjustLeftOffScreen(component)
+        this.adjustPosition(component)
         document.addEventListener('click', listener)
     }
 
@@ -85,11 +83,17 @@ export class DatepickerComponent extends BaseComponent {
         this.loadDays(this.getMonthArray())
     }
 
-    private async adjustLeftOffScreen(component: IComponent): Promise<void> {
-        const left = (this.HtmlElement.offsetLeft - 5) + component.HtmlElement.offsetLeft
-        if (left < 0) {
-            this.HtmlElement.setAttribute('style', `right:${left}px`)
+    private async adjustPosition(component: IComponent): Promise<void> {
+        const top = component.HtmlElement.clientHeight
+        let left = this.HtmlElement.clientWidth / 2 - component.HtmlElement.clientWidth / 2
+        if (left > component.HtmlElement.offsetLeft) {
+            left = component.HtmlElement.offsetLeft - 5
         }
+        const offsetRight = component.HtmlElement.offsetLeft - left + this.HtmlElement.clientWidth
+        if (offsetRight > document.documentElement.clientWidth) {
+            left += offsetRight - (document.documentElement.clientWidth - 10)
+        }
+        this.HtmlElement.setAttribute('style', `top:${top};left:-${left}px`)
     }
 
     private loadDays(weeks: DayModel[][]): void {
@@ -121,18 +125,24 @@ export class DatepickerComponent extends BaseComponent {
         const totalDays = new Date(this.year, this.month + 1, 0).getDate()
         let position = new Date(this.year, this.month, 1).getDay()
         let currentPosition = this.equivalentDayOfWeek.get(position)
-        const isCurrentMonth = this.year === this.selectedDate.getFullYear() && this.month === this.selectedDate.getMonth()
-        result.push(this.dayModels.map(d => ({ number: null, type: d.type, isCurrentDay: false })))
-        let j = 0
-        for (let i = 0; i < totalDays; i++) {
+        const ispreSelectedMonth = this.year === this.selectedDate.getFullYear() && this.month === this.selectedDate.getMonth()
+        const today = new Date()
+        const isCurrentMonth = this.year === today.getFullYear() && this.month === today.getMonth()
+        let j = -1
+        let day = 0
+        let initialWeek = true
+        while (++day <= totalDays) {
             if (currentPosition !== undefined) {
-                if (currentPosition === this.firstPosition && i > 0) {
-                    result.push(this.dayModels.map(d => ({ number: null, type: d.type, isCurrentDay: false })))
+                if (initialWeek || currentPosition === this.firstPosition) {
+                    result.push(this.dayModels.map(d => ({ number: null, type: d.type, isCurrentDay: false, isPreSelectedDay: false })))
+                    initialWeek = false
                     j++
                 }
-                const day = i + 1
                 result[j][currentPosition].number = day
-                if (isCurrentMonth && day === this.selectedDate.getDate()) {
+                if (ispreSelectedMonth && day === this.selectedDate.getDate()) {
+                    result[j][currentPosition].isPreSelectedDay = true
+                }
+                if (isCurrentMonth && day === today.getDate()) {
                     result[j][currentPosition].isCurrentDay = true
                 }
             }

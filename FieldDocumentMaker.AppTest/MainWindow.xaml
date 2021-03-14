@@ -10,6 +10,6 @@
         Title="MainWindow" Height="800" Width="1280"
         MinWidth="1024" MinHeight="768">
     <Grid>
-        <WPF:FileDocumentMakerControl x:Name="Control" />
+        <WPF:FileDocumentMakerControl x:Name="Control"  />
     </Grid>
 </RibbonWindow>

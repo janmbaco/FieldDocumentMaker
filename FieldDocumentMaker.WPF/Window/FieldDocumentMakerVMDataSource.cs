@@ -1,6 +1,4 @@
-﻿using CefSharp;
-
-namespace FieldDocumentMaker.WPF.Window
+﻿namespace FieldDocumentMaker.WPF.Window
 {
     class FieldDocumentMakerVMDataSource
     {

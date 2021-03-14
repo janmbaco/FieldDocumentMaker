@@ -3,6 +3,7 @@ declare global {
         zip(other: any[]): Array<any>
     }
 }
+
 Array.prototype.zip = function (other: any[]): any[] {
     const self = this as Array<any>
     const ret = []

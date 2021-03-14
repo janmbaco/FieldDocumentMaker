@@ -1,4 +1,4 @@
-import { container, DependencyContainer, Lifecycle } from 'tsyringe'
+import { container, Lifecycle } from 'tsyringe'
 import { EditorFactory } from './components/editor/editor-factory'
 import { IComponentFactory } from './components/component-factory-interface'
 import { FieldFactory } from './components/field/field-factory'

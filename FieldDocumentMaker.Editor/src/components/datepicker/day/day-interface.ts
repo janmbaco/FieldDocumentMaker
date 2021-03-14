@@ -5,6 +5,7 @@ export interface IDayComponent extends IComponent {
     Number: number | null
     Type: DayType
     IsCurrentDate: boolean
+    IsPreSelectedDay: boolean
 
     dayClick: (day: number) => void
 }

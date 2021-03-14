@@ -34,7 +34,7 @@ export class BaseComponent implements IComponent {
         element.appendChild(this.HtmlElement)
     }
 
-    remove(): void {
+    remove(bydom: boolean = true): void {
         if (this.baseElement) {
 
             if (this.subscription) {
@@ -46,11 +46,13 @@ export class BaseComponent implements IComponent {
             })
 
             this.children.forEach(element => {
-                element.forEach(e => e.remove())
+                element.forEach(e => e.remove(false))
             })
             Array.from(this.children.keys()).forEach(k => this.children.delete(k))
 
-            this.baseElement.remove()
+            if (bydom) {
+                this.baseElement.remove()
+            }
         }
     }
 

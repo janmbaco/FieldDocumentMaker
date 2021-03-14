@@ -1,4 +1,3 @@
-import './day-base-style.css'
 import view from './day-base-template.html'
 import { BaseComponent } from '../../base-component'
 

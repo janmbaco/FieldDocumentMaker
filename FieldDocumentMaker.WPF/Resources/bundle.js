@@ -2789,67 +2789,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n\tbackground-color: #666;\r\
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".datepicker {\r\n\tposition: absolute;\r\n\tbackground-color: white;\r\n\tpadding: 10px;\r\n\tz-index: 9999;\r\n\tborder: 1px solid gray;\r\n\tborder-radius: 5px;\r\n\tright: 0px;\r\n\tuser-select: none;\r\n}\r\n\r\n.datepicker > .header {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tjustify-content: space-between;\r\n}\r\n\r\n.datepicker > .header > span {\r\n\tpadding-left: 10px;\r\n\tpadding-right: 10px;\r\n}\r\n\r\n.datepicker > .header > .month-before,\r\n.datepicker > .header > .month-after {\r\n\tcursor: pointer;\r\n}\r\n\r\n.datepicker > .calendar {\r\n\tdisplay: table;\r\n}\r\n\r\n.datepicker > .calendar > .week-days-collection > div {\r\n\tdisplay: table-cell;\r\n\tpadding: 5px;\r\n\tmax-width: 35px;\r\n\tmin-width: 35px;\r\n}\r\n\r\n.datepicker > .calendar > .weeks-collection > div {\r\n\tdisplay: table-row;\r\n}\r\n\r\n.datepicker > .calendar > .weeks-collection > div > div {\r\n\tdisplay: table-cell;\r\n\tpadding: 5px;\r\n\tmax-width: 35px;\r\n\tmin-width: 35px;\r\n\tcursor: pointer;\r\n}\r\n\r\n.datepicker > .calendar .holiday {\r\n\tcolor: rgb(207, 12, 12);\r\n}\r\n\r\n.datepicker > .calendar .currentDay {\r\n\tborder: 1px solid rgb(207, 12, 12);\r\n}\r\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ 2628:
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3645);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ 517:
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3645);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ 1925:
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3645);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".datepicker {\r\n\tposition: absolute;\r\n\tbackground-color: white;\r\n\tpadding: 10px;\r\n\tz-index: 9999;\r\n\tborder: 1px solid gray;\r\n\tborder-radius: 5px;\r\n\tuser-select: none;\r\n}\r\n\r\n.datepicker > .header {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tjustify-content: space-between;\r\n}\r\n\r\n.datepicker > .header > span {\r\n\tpadding-left: 10px;\r\n\tpadding-right: 10px;\r\n}\r\n\r\n.datepicker > .header > .month-before,\r\n.datepicker > .header > .month-after {\r\n\tcursor: pointer;\r\n}\r\n\r\n.datepicker > .calendar {\r\n\tdisplay: table;\r\n}\r\n\r\n.datepicker > .calendar > .week-days-collection > div {\r\n\tdisplay: table-cell;\r\n\tpadding: 5px;\r\n\tmax-width: 35px;\r\n\tmin-width: 35px;\r\n}\r\n\r\n.datepicker > .calendar > .weeks-collection > div {\r\n\tdisplay: table-row;\r\n}\r\n\r\n.datepicker > .calendar > .weeks-collection > div > div {\r\n\tdisplay: table-cell;\r\n\tpadding: 5px;\r\n\tmax-width: 35px;\r\n\tmin-width: 35px;\r\n\tcursor: pointer;\r\n}\r\n\r\n.datepicker > .calendar .holiday {\r\n\tcolor: rgb(207, 12, 12);\r\n}\r\n\r\n.datepicker > .calendar .currentDay {\r\n\tborder: 1px solid rgb(207, 12, 12);\r\n}\r\n\r\n.datepicker > .calendar .preselectedDay {\r\n\tbackground-color: rgba(207, 12, 12, 0.3);\r\n\tborder: 2px dotted rgb(207, 12, 12);\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14751,87 +14691,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ 815:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3379);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_day_base_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2628);
-
-            
-
-var options = {"injectType":"singletonStyleTag"};
-
-options.insert = "head";
-options.singleton = true;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_day_base_style_css__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z, options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_day_base_style_css__WEBPACK_IMPORTED_MODULE_1__/* .default.locals */ .Z.locals || {});
-
-/***/ }),
-
-/***/ 5033:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3379);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_day_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(517);
-
-            
-
-var options = {"injectType":"singletonStyleTag"};
-
-options.insert = "head";
-options.singleton = true;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_day_style_css__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z, options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_day_style_css__WEBPACK_IMPORTED_MODULE_1__/* .default.locals */ .Z.locals || {});
-
-/***/ }),
-
-/***/ 5753:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3379);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_week_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1925);
-
-            
-
-var options = {"injectType":"singletonStyleTag"};
-
-options.insert = "head";
-options.singleton = true;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_week_style_css__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z, options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_week_style_css__WEBPACK_IMPORTED_MODULE_1__/* .default.locals */ .Z.locals || {});
-
-/***/ }),
-
 /***/ 5886:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -15474,7 +15333,7 @@ class App {
                 //            fields.push({ base: { label: 'País', value: 'España', style: '', bind: 'Curriculum.Person.Direccion.Pais' }, type: 'Text', text: 'España' })
                 //          fields.push({ base: { label: 'Fecha de Inicio', value: 'veinte de octubre de dos mil veinte', style: '', bind: 'Curriculum.ExperienciasLaborales.[0].FechaInicio' }, type: 'Date', date: new Date('2020-10-20T00:00:00.000Z').getTime(), minDate: new Date('2020-10-10T00:00:00.000Z').getTime(), maxDate: new Date('2020-10-10T00:00:00.000Z').getTime() })
                 fields = JSON.parse(`[{"text":"España","base":{"label":"País","value":"España","style":"","bind":"Curriculum.Person.Direccion.Pais"},"type":"Text"},{"text":"Murica","base":{"label":"Provincia","value":"Murica","style":"","bind":"Curriculum.Person.Direccion.Provincia"},"type":"Text"},{"text":"Las Palas","base":{"label":"Ciudad","value":"Las Palas","style":"","bind":"Curriculum.Person.Direccion.Ciudad"},"type":"Text"},{"number":30334,"maxValue":0,"minValue":0,"base":{"label":"Codigo Postal","value":"30.334","style":"","bind":"Curriculum.Person.Direccion.CodigoPostal"},"type":"Integer"},{"text":"C/ Cementerio","base":{"label":"Vía","value":"C/ Cementerio","style":"","bind":"Curriculum.Person.Direccion.Via"},"type":"Text"},{"number":4,"maxValue":0,"minValue":0,"base":{"label":"Número","value":"4","style":"","bind":"Curriculum.Person.Direccion.Numero"},"type":"Integer"},{"text":"José","base":{"label":"Nombre","value":"José","style":"","bind":"Curriculum.Person.Nombre"},"type":"Text"},{"text":"nose","base":{"label":"Primer Apellido","value":"nose","style":"","bind":"Curriculum.Person.PrimerApellido"},"type":"Text"},{"text":"nose","base":{"label":"Segundo Apellido","value":"nose","style":"","bind":"Curriculum.Person.SegundoAPellido"},"type":"Text"},{"date":"2020-10-10T00:00:00","maxDate":"0001-01-01T00:00:00","minDate":"0001-01-01T00:00:00","base":{"label":"Fecha de Inicio","value":"10/10/2020","style":"","bind":"Curriculum.ExperienciasLaborales.[0].FechaInicio"},"type":"Date"},{"date":"2020-12-12T00:00:00","maxDate":"0001-01-01T00:00:00","minDate":"0001-01-01T00:00:00","base":{"label":"Fecha de Fin","value":"12/12/2020","style":"","bind":"Curriculum.ExperienciasLaborales.[0].FechaFin"},"type":"Date"},{"text":"La que sea","base":{"label":"Empresa","value":"La que sea","style":"","bind":"Curriculum.ExperienciasLaborales.[0].Empresa"},"type":"Text"},{"text":"El que sea","base":{"label":"Puesto","value":"El que sea","style":"","bind":"Curriculum.ExperienciasLaborales.[0].Puesto"},"type":"Text"}]`);
-                zones = JSON.parse(`[{"id":"2582d0ff-959a-4c0d-a918-72baa16b9e34","label":"Información Personal","color":"ligthgreen","isVisible":true,"elements":[{"id":"fefc9c36-3cc0-49c2-be29-fd1b3f0064df","template":"<div><p><field bind='Curriculum.Person.Nombre' style=''></field><field bind='Curriculum.Person.PrimerApellido' style=''></field><field bind='Curriculum.Person.SegundoAPellido' style=''></field></p><p><field bind='Curriculum.Person.Direccion.Poblacion' style=''></field></p><p><field bind='Curriculum.Person.Direccion.Provincia' style=''></field></p><p><field bind='Curriculum.Person.Telefono' style=''></field> | <field bind='Curriculum.Person.Email' style=''></field></p><p>Amplia experiencia en análisis, diseño y programación de aplicaciones, especialmente bajo tecnología .Net</p></div>","isVisible":true}]},{"id":"ae7e590e-f255-4ccc-9d26-a39ea38453f6","label":"Competencias","color":"ligthgreen","isVisible":true,"elements":[{"id":"1b3be04b-7454-4c36-9925-7a72adf8e7ac","template":"<p>Competencias</p>","isVisible":true},{"id":"9dae0c4b-c500-48db-aad8-3a487570cdf7","template":"<p>Me dedico al análisis y desarrollo de aplicaciones, profesionalmente, desde 2006. Realizando la mayoría de los proyectos desde cero y estando presente en todo el ciclo de vida del software. El análisis orgánico y el diseño estructural es un mundo que me apasiona.</p>","isVisible":true},{"id":"460cd3b8-a2fb-47eb-ab9b-12e6c73e3651","template":"<p>Mi principal herramienta es Visual Studio con todo los que conlleva, aunque periféricamente también utilizo Elastic Search para generar índices, Kafka para gestionar colas, bases de datos MySQL, etc...</p>","isVisible":true}]},{"id":"bd91f49e-80c7-434b-9e08-41c2748c8aeb","label":"Experiencia Profesional","color":"ligthgreen","isVisible":true,"elements":[{"id":"30c3b248-7abc-4c32-aacc-2dc47ad35602","template":"<p>Experiencia Profesional</p>","isVisible":true},{"id":"9076d52e-6109-4cb1-ad84-d3b0ed94d667","template":"<p style='font-weight: bold;'><field bind='Curriculum.ExperienciasLaborales.[0].FechaInicio' style='font-weight: bold;'></field> - <field bind='Curriculum.ExperienciasLaborales.[0].Empresa' style='font-weight: bold;'></field></p>","isVisible":true},{"id":"7b1e83f7-551b-4a88-8d43-a8ed0f8e289c","template":"<p><field bind='Curriculum.ExperienciasLaborales.[0].Puesto' style=''></field></p>","isVisible":true}]}]`);
+                zones = JSON.parse(`[{"id":"2582d0ff-959a-4c0d-a918-72baa16b9e34","label":"Información Personal","color":"ligthgreen","isVisible":true,"elements":[{"id":"fefc9c36-3cc0-49c2-be29-fd1b3f0064df","template":"<div><p><field bind='Curriculum.Person.Nombre' style=''></field><field bind='Curriculum.Person.PrimerApellido' style=''></field><field bind='Curriculum.Person.SegundoAPellido' style=''></field></p><p><field bind='Curriculum.Person.Direccion.Poblacion' style=''></field></p><p><field bind='Curriculum.Person.Direccion.Provincia' style=''></field></p><p><field bind='Curriculum.Person.Telefono' style=''></field> | <field bind='Curriculum.Person.Email' style=''></field></p><p>Amplia experiencia en análisis, diseño y programación de aplicaciones, especialmente  bajo tecnología <field bind='Curriculum.ExperienciasLaborales.[0].FechaInicio' style='font-weight: bold;'></field> .Net</p>  </div>","isVisible":true}]},{"id":"ae7e590e-f255-4ccc-9d26-a39ea38453f6","label":"Competencias","color":"ligthgreen","isVisible":true,"elements":[{"id":"1b3be04b-7454-4c36-9925-7a72adf8e7ac","template":"<p>Competencias</p>","isVisible":true},{"id":"9dae0c4b-c500-48db-aad8-3a487570cdf7","template":"<p>Me dedico al análisis y desarrollo de aplicaciones, profesionalmente, desde 2006. Realizando la mayoría de los proyectos desde cero y estando presente en todo el ciclo de vida del software. El análisis orgánico y el diseño estructural es un mundo que me apasiona.</p>","isVisible":true},{"id":"460cd3b8-a2fb-47eb-ab9b-12e6c73e3651","template":"<p>Mi principal herramienta es Visual Studio con todo los que conlleva, aunque periféricamente también utilizo Elastic Search para generar índices, Kafka para gestionar colas, bases de datos MySQL, etc...</p>","isVisible":true}]},{"id":"bd91f49e-80c7-434b-9e08-41c2748c8aeb","label":"Experiencia Profesional","color":"ligthgreen","isVisible":true,"elements":[{"id":"30c3b248-7abc-4c32-aacc-2dc47ad35602","template":"<p>Experiencia Profesional</p>","isVisible":true},{"id":"9076d52e-6109-4cb1-ad84-d3b0ed94d667","template":"<p style='font-weight: bold;'><field bind='Curriculum.ExperienciasLaborales.[0].FechaInicio' style='font-weight: bold;'></field> - <field bind='Curriculum.ExperienciasLaborales.[0].Empresa' style='font-weight: bold;'></field></p>","isVisible":true},{"id":"7b1e83f7-551b-4a88-8d43-a8ed0f8e289c","template":"<p><field bind='Curriculum.ExperienciasLaborales.[0].Puesto' style=''></field></p>","isVisible":true}]}]`);
             }
             store.dispatch(field_actions_1.LoadFields(fields));
             store.dispatch(zone_actions_1.LoadZones(zones));
@@ -15519,7 +15378,7 @@ class BaseComponent {
     setInElement(element) {
         element.appendChild(this.HtmlElement);
     }
-    remove() {
+    remove(bydom = true) {
         if (this.baseElement) {
             if (this.subscription) {
                 this.subscription.forEach(s => s.unsubscribe());
@@ -15528,10 +15387,12 @@ class BaseComponent {
                 values.unsubscribe();
             });
             this.children.forEach(element => {
-                element.forEach(e => e.remove());
+                element.forEach(e => e.remove(false));
             });
             Array.from(this.children.keys()).forEach(k => this.children.delete(k));
-            this.baseElement.remove();
+            if (bydom) {
+                this.baseElement.remove();
+            }
         }
     }
     appendChild(component, innerClass = 'none') {
@@ -15711,8 +15572,6 @@ class DatepickerComponent extends base_component_1.BaseComponent {
     constructor(weekDayModels, monthLabels, rightToLeft, weekDayFactory, weekFactory) {
         super(datepicker_template_html_1.default);
         this.monthAndYear = '';
-        this.weekDays = [];
-        this.weeks = [];
         this.daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
         this.month = 0;
         this.year = 0;
@@ -15754,7 +15613,7 @@ class DatepickerComponent extends base_component_1.BaseComponent {
         };
         this.HtmlElement.removeAttribute('style');
         component.HtmlElement.append(this.HtmlElement);
-        this.adjustLeftOffScreen(component);
+        this.adjustPosition(component);
         document.addEventListener('click', listener);
     }
     set Date(date) {
@@ -15768,12 +15627,18 @@ class DatepickerComponent extends base_component_1.BaseComponent {
         this.setState(() => this.monthAndYear = `${this.monthLabels[this.month]} - ${this.year}`);
         this.loadDays(this.getMonthArray());
     }
-    adjustLeftOffScreen(component) {
+    adjustPosition(component) {
         return __awaiter(this, void 0, void 0, function* () {
-            const left = (this.HtmlElement.offsetLeft - 5) + component.HtmlElement.offsetLeft;
-            if (left < 0) {
-                this.HtmlElement.setAttribute('style', `right:${left}px`);
+            const top = component.HtmlElement.clientHeight;
+            let left = this.HtmlElement.clientWidth / 2 - component.HtmlElement.clientWidth / 2;
+            if (left > component.HtmlElement.offsetLeft) {
+                left = component.HtmlElement.offsetLeft - 5;
             }
+            const offsetRight = component.HtmlElement.offsetLeft - left + this.HtmlElement.clientWidth;
+            if (offsetRight > document.documentElement.clientWidth) {
+                left += offsetRight - (document.documentElement.clientWidth - 10);
+            }
+            this.HtmlElement.setAttribute('style', `top:${top};left:-${left}px`);
         });
     }
     loadDays(weeks) {
@@ -15802,18 +15667,24 @@ class DatepickerComponent extends base_component_1.BaseComponent {
         const totalDays = new Date(this.year, this.month + 1, 0).getDate();
         let position = new Date(this.year, this.month, 1).getDay();
         let currentPosition = this.equivalentDayOfWeek.get(position);
-        const isCurrentMonth = this.year === this.selectedDate.getFullYear() && this.month === this.selectedDate.getMonth();
-        result.push(this.dayModels.map(d => ({ number: null, type: d.type, isCurrentDay: false })));
-        let j = 0;
-        for (let i = 0; i < totalDays; i++) {
+        const ispreSelectedMonth = this.year === this.selectedDate.getFullYear() && this.month === this.selectedDate.getMonth();
+        const today = new Date();
+        const isCurrentMonth = this.year === today.getFullYear() && this.month === today.getMonth();
+        let j = -1;
+        let day = 0;
+        let initialWeek = true;
+        while (++day <= totalDays) {
             if (currentPosition !== undefined) {
-                if (currentPosition === this.firstPosition && i > 0) {
-                    result.push(this.dayModels.map(d => ({ number: null, type: d.type, isCurrentDay: false })));
+                if (initialWeek || currentPosition === this.firstPosition) {
+                    result.push(this.dayModels.map(d => ({ number: null, type: d.type, isCurrentDay: false, isPreSelectedDay: false })));
+                    initialWeek = false;
                     j++;
                 }
-                const day = i + 1;
                 result[j][currentPosition].number = day;
-                if (isCurrentMonth && day === this.selectedDate.getDate()) {
+                if (ispreSelectedMonth && day === this.selectedDate.getDate()) {
+                    result[j][currentPosition].isPreSelectedDay = true;
+                }
+                if (isCurrentMonth && day === today.getDate()) {
                     result[j][currentPosition].isCurrentDay = true;
                 }
             }
@@ -15880,7 +15751,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DayBaseComponent = void 0;
-__webpack_require__(815);
 const day_base_template_html_1 = __importDefault(__webpack_require__(8006));
 const base_component_1 = __webpack_require__(8583);
 class DayBaseComponent extends base_component_1.BaseComponent {
@@ -15912,7 +15782,6 @@ exports.DayBaseComponent = DayBaseComponent;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DayComponent = void 0;
-__webpack_require__(5033);
 const day_base_component_1 = __webpack_require__(1015);
 class DayComponent extends day_base_component_1.DayBaseComponent {
     constructor(model) {
@@ -15920,10 +15789,12 @@ class DayComponent extends day_base_component_1.DayBaseComponent {
         this.day = null;
         this.dayClick = () => { };
         this.Value = (model.number) ? Math.trunc(model.number).toString() : '';
-        this.isCurrentDay = model.isCurrentDay;
         this.OnRender.push(() => {
-            if (this.isCurrentDay) {
+            if (model.isCurrentDay) {
                 this.HtmlElement.classList.add('currentDay');
+            }
+            if (model.isPreSelectedDay) {
+                this.HtmlElement.classList.add('preselectedDay');
             }
         });
         this.on('click', '', (_, e) => {
@@ -15937,13 +15808,22 @@ class DayComponent extends day_base_component_1.DayBaseComponent {
         this.Value = (n) ? Math.trunc(n).toString() : '';
     }
     set IsCurrentDate(b) {
-        this.isCurrentDay = b;
         if (this.IsRendered) {
             if (b) {
                 this.HtmlElement.classList.add('currentDay');
             }
             else {
                 this.HtmlElement.classList.remove('currentDay');
+            }
+        }
+    }
+    set IsPreSelectedDay(b) {
+        if (this.IsRendered) {
+            if (b) {
+                this.HtmlElement.classList.add('preselectedDay');
+            }
+            else {
+                this.HtmlElement.classList.remove('preselectedDay');
             }
         }
     }
@@ -16027,7 +15907,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.WeekComponent = void 0;
-__webpack_require__(5753);
 const week_template_html_1 = __importDefault(__webpack_require__(9209));
 const base_component_1 = __webpack_require__(8583);
 const autobind_1 = __webpack_require__(9905);
@@ -16050,6 +15929,7 @@ class WeekComponent extends base_component_1.BaseComponent {
             zipped.component.Number = zipped.model.number;
             zipped.component.Type = zipped.model.type;
             zipped.component.IsCurrentDate = zipped.model.isCurrentDay;
+            zipped.component.IsPreSelectedDay = zipped.model.isPreSelectedDay;
         }
     }
 }

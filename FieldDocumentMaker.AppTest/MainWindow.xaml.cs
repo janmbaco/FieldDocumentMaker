@@ -67,11 +67,11 @@ namespace FieldDocumentMaker.AppTest
                         new SubZone
                         {
                             Id = Guid.NewGuid(),
-                            Template = string.Concat("<div style='margin-left:5cm;text-align:left;line-height:auto'><p><h1><field bind='Curriculum.Person.Nombre' style=''></field><field bind='Curriculum.Person.PrimerApellido' style=''></field><field bind='Curriculum.Person.SegundoAPellido' style=''></field></h1>",
-                                                     "<field bind='Curriculum.Person.Direccion.Poblacion' style=''></field><br />",
-                                                     "<field bind='Curriculum.Person.Direccion.Provincia' style=''></field><br />",
-                                                     "<field bind='Curriculum.Person.Telefono' style=''></field> | <field bind='Curriculum.Person.Email' style=''></field></p>",
-                                                     "<p style='margin-right:7cm'>Amplia experiencia en análisis, diseño y programación de aplicaciones, especialmente bajo tecnología .Net</p></div>")
+                            Template = string.Concat("<div style='margin-left:5cm;text-align:left;line-height:auto'><p><h1> <field bind='Curriculum.Person.Nombre' style=''></field><field bind='Curriculum.Person.PrimerApellido' style=''> </field><field bind='Curriculum.Person.SegundoAPellido' style=''></field> </h1>",
+                                                     "<field bind='Curriculum.Person.Direccion.Poblacion' style=''></field> <field bind='Curriculum.ExperienciasLaborales.[0].FechaInicio' style='font-weight: bold;'></field> <br />",
+                                                     "<field bind='Curriculum.Person.Direccion.Provincia' style=''></field> <br />",
+                                                     "<field bind='Curriculum.Person.Telefono' style=''></field> | <field bind='Curriculum.Person.Email' style=''></field> </p>",
+                                                     "<p style='margin-right:7cm'>Amplia experiencia en análisis, diseño y programación de aplicaciones, especialmente bajo tecnología .Net </p></div>")
                         }
                     }
 

@@ -4,4 +4,5 @@ export interface DayModel {
     number: number | null
     type: DayType
     isCurrentDay: boolean
+    isPreSelectedDay: boolean
 }

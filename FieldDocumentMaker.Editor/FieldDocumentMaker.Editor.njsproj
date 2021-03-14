@@ -39,13 +39,19 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\app.css" />
     <Content Include="src\app.html" />
+    <Content Include="src\components\datepicker\datepicker-style.css" />
+    <Content Include="src\components\datepicker\datepicker-template.html" />
+    <Content Include="src\components\datepicker\day-base\day-base-template.html" />
+    <Content Include="src\components\datepicker\week\week-template.html" />
     <Content Include="src\components\editor\editor-style.css" />
     <Content Include="src\components\editor\editor-template.html" />
     <Content Include="src\components\field\combo-field\combo-field-style.css" />
     <Content Include="src\components\field\combo-field\combo-field-template.html" />
     <Content Include="src\components\field\date-field\date-field-style.css" />
-    <Content Include="src\components\field\date-field\date-field-template.html" />
+    <Content Include="src\components\field\field-style.css" />
+    <Content Include="src\components\field\field-template.html" />
     <Content Include="src\components\field\float-field\float-field-style.css" />
     <Content Include="src\components\field\float-field\float-field-template.html" />
     <Content Include="src\components\field\image-field\image-field-style.css" />
@@ -53,7 +59,6 @@
     <Content Include="src\components\field\integer-field\integer-field-style.css" />
     <Content Include="src\components\field\integer-field\integer-field-template.html" />
     <Content Include="src\components\field\text-field\text-field-style.css" />
-    <Content Include="src\components\field\text-field\text-field-template.html" />
     <Content Include="src\components\subzone\subzone-style.css" />
     <Content Include="src\components\subzone\subzone-template.html" />
     <Content Include="src\components\zone\zone-style.css" />
@@ -66,6 +71,11 @@
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\components\datepicker\" />
+    <Folder Include="src\components\datepicker\day-base\" />
+    <Folder Include="src\components\datepicker\day\" />
+    <Folder Include="src\components\datepicker\week-day\" />
+    <Folder Include="src\components\datepicker\week\" />
     <Folder Include="src\components\editor\" />
     <Folder Include="src\components\field\" />
     <Folder Include="src\components\field\combo-field\" />
@@ -74,11 +84,11 @@
     <Folder Include="src\components\field\image-field\" />
     <Folder Include="src\components\field\integer-field\" />
     <Folder Include="src\components\field\text-field\" />
-    <Folder Include="src\components\shared\" />
     <Folder Include="src\components\subzone\" />
     <Folder Include="src\components\zone\" />
     <Folder Include="src\decorators\" />
     <Folder Include="src\definitions\" />
+    <Folder Include="src\extensions\" />
     <Folder Include="src\state\" />
     <Folder Include="src\state\fields\" />
     <Folder Include="src\state\loading\" />
@@ -88,8 +98,24 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app.ts" />
     <TypeScriptCompile Include="src\components\base-component.ts" />
-    <TypeScriptCompile Include="src\components\component-fatory-interface.ts" />
+    <TypeScriptCompile Include="src\components\component-factory-interface.ts" />
     <TypeScriptCompile Include="src\components\component-interface.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\datepicker-component.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\datepicker-factory.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\datepicker-interface.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\datepicker-model.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\day-base\day-base-component.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\day\day-component.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\day\day-factory.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\day\day-interface.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\day\day-model.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\week-day\week-day-component.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\week-day\week-day-factory.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\week-day\week-day-interface.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\week-day\week-day-model.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\week\week-component.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\week\week-factory.ts" />
+    <TypeScriptCompile Include="src\components\datepicker\week\week-interface.ts" />
     <TypeScriptCompile Include="src\components\editor\editor-component.ts" />
     <TypeScriptCompile Include="src\components\editor\editor-factory-interface.ts" />
     <TypeScriptCompile Include="src\components\editor\editor-factory.ts" />
@@ -101,22 +127,19 @@
     <TypeScriptCompile Include="src\components\field\image-field\image-field-component.ts" />
     <TypeScriptCompile Include="src\components\field\integer-field\integer-field-component.ts" />
     <TypeScriptCompile Include="src\components\field\text-field\text-field-component.ts" />
-    <TypeScriptCompile Include="src\components\shared\document-extension.ts" />
     <TypeScriptCompile Include="src\components\subzone\subzone-component.ts" />
     <TypeScriptCompile Include="src\components\subzone\subzone-factory.ts" />
     <TypeScriptCompile Include="src\components\zone\zone-component.ts" />
     <TypeScriptCompile Include="src\components\zone\zone-factory.ts" />
     <TypeScriptCompile Include="src\decorators\autobind.ts" />
-    <TypeScriptCompile Include="src\definitions\bound.d.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="src\definitions\cefsharp.d.ts" />
     <TypeScriptCompile Include="src\definitions\editorScriptManager.d.ts" />
     <TypeScriptCompile Include="src\definitions\html.d.ts" />
     <TypeScriptCompile Include="src\di-container.ts" />
+    <TypeScriptCompile Include="src\extensions\array-extensions.ts" />
+    <TypeScriptCompile Include="src\extensions\document-extensions.ts" />
     <TypeScriptCompile Include="src\state\app-state.ts" />
     <TypeScriptCompile Include="src\state\fields\field-actions.ts" />
-    <TypeScriptCompile Include="src\state\fields\field-bind-model.ts" />
     <TypeScriptCompile Include="src\state\fields\field-model.ts" />
     <TypeScriptCompile Include="src\state\fields\field-reducer.ts" />
     <TypeScriptCompile Include="src\state\loading\loading-actions.ts" />

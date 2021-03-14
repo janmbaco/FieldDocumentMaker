@@ -1,4 +1,3 @@
-import './week-style.css'
 import view from './week-template.html'
 import { BaseComponent } from '../../base-component'
 import { IDayComponent } from '../day/day-interface'
@@ -31,6 +30,7 @@ export class WeekComponent extends BaseComponent {
             zipped.component.Number = zipped.model.number
             zipped.component.Type = zipped.model.type
             zipped.component.IsCurrentDate = zipped.model.isCurrentDay
+            zipped.component.IsPreSelectedDay = zipped.model.isPreSelectedDay
         }
     }
 }
