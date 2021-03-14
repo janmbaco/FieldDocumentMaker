@@ -116,7 +116,6 @@
     <Compile Include="Window\WebBrowser\EditorModels\ZoneModel.cs" />
     <Compile Include="Window\WebBrowser\EditorScriptManager.cs" />
     <Compile Include="Window\WebBrowser\Handlers\ContextMenuHandler.cs" />
-    <Compile Include="Window\WebBrowser\Handlers\LifeSpanHandler.cs" />
     <Compile Include="Window\WebBrowser\WebBrowserManager.cs" />
     <Compile Include="Window\FieldDocumentMakerDataContext.cs" />
     <Compile Include="Window\FieldDocumentMakerView.xaml.cs">
