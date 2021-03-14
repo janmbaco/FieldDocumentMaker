@@ -26,7 +26,7 @@ module.exports = {
             use: [{
                 loader: 'html-loader',
                 options: {
-                    minimize: true
+                    minimize: false
                 }
             }]
         }
@@ -40,7 +40,7 @@ module.exports = {
         filename: 'bundle.js'
     },
     optimization: {
-        minimize: true,
+        minimize: false,
         minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
     },
     plugins: [

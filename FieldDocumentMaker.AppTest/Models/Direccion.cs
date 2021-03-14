@@ -16,8 +16,8 @@ namespace FieldDocumentMaker.AppTest.Models
         [DisplayName("Provincia")]
         public string Provincia { get; set; }
 
-        [DisplayName("Ciudad")]
-        public string Ciudad { get; set; }
+        [DisplayName("Población")]
+        public string Poblacion { get; set; }
 
         [DisplayName("Codigo Postal")]
         public int? CodigoPostal { get; set; }

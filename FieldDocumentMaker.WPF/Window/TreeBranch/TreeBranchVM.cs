@@ -1,19 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
 
 
 namespace FieldDocumentMaker.WPF.Window.TreeBranch
 {
     public class TreeBranchVM : INotifyPropertyChanged
     {
-        private string _value;
+        private string value;
 
         public string Value { 
-            get => _value; 
+            get => this.value; 
             set { 
-                _value = value;
+                this.value = value;
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
             } 
         }

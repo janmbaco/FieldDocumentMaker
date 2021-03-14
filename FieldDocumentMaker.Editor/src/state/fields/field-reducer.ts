@@ -12,7 +12,7 @@ export class FieldReducer implements IReducer<FieldModel[]> {
     this.reducer = createReducer(initialState, {
       [LoadFields.type]: (_, action: PayloadAction<FieldModel[]>) => this.Load(action.payload),
       [ChangeFieldValue.type]: (state, action: PayloadAction<{ field: FieldModel, newValue: string }>) => {
-        return state.map(field => field.bind === action.payload.field.bind ? this.ChangeFieldValue(field, action.payload.newValue) : field)
+        return state.map(field => field.base.bind === action.payload.field.base.bind ? this.ChangeFieldValue(field, action.payload.newValue) : field)
       }
     })
   }
@@ -25,7 +25,7 @@ export class FieldReducer implements IReducer<FieldModel[]> {
     if (editorScriptManager) {
       return editorScriptManager.interceptFieldChange(field, newValue)
     } else {
-      return { ...field, value: newValue }
+      return { ...field, base: { ...field.base, value: newValue } }
     }
   }
 }

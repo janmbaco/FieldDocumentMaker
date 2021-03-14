@@ -50,15 +50,15 @@ export class StateManagement implements IStateManagement {
         if (state.isLoaded) {
 
             state.fields.forEach(field => {
-                if (!this.filedSubjects.has(field.bind)) {
-                    this.filedSubjects.set(field.bind, new BehaviorSubject<FieldModel>(field))
+                if (!this.filedSubjects.has(field.base.bind)) {
+                    this.filedSubjects.set(field.base.bind, new BehaviorSubject<FieldModel>(field))
                 } else {
-                    this.filedSubjects.get(field.bind)?.next(field)
+                    this.filedSubjects.get(field.base.bind)?.next(field)
                 }
             })
 
             this.filedSubjects.forEach((subject, bind) => {
-                if (!state.fields.some(f => f.bind === bind)) {
+                if (!state.fields.some(f => f.base.bind === bind)) {
                     subject.complete()
                 }
             })
@@ -97,7 +97,7 @@ export class StateManagement implements IStateManagement {
     }
 
     getFieldModelObservable(f: FieldModel): Observable<FieldModel> {
-        return this.filedSubjects.get(f.bind)?.asObservable()!
+        return this.filedSubjects.get(f.base.bind)?.asObservable()!
     }
 
     getSubZoneModelObservable(p: SubZoneModel): Observable<SubZoneModel> {
@@ -106,7 +106,7 @@ export class StateManagement implements IStateManagement {
 
     getFieldByBind(bind: string): FieldModel | null {
         const fields = this.store.getState().fields
-        const idx = fields.findIndex(f => f.bind === bind)
+        const idx = fields.findIndex(f => f.base.bind === bind)
         if (idx === -1) {
             return null
         } else {

@@ -1,0 +1,15 @@
+.date-field {
+	border: 1px solid gray;
+	border-radius: 4px;
+	position: relative;
+	min-width: 45px;
+	text-align: center;
+	display: inline-block;
+}
+.date-field > .value {
+	display: inline;
+	padding-left: 3px;
+	padding-right: 3px;
+	user-select: text;
+	outline: 0px solid transparent;
+}

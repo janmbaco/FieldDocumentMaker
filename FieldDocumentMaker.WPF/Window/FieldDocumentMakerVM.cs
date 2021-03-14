@@ -1,10 +1,7 @@
-﻿using CefSharp;
-using CefSharp.Wpf;
+﻿using CefSharp.Wpf;
 using FieldDocumentMaker.WPF.Window.TreeBranch;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.Reflection;
 
 namespace FieldDocumentMaker.WPF.Window
 {

@@ -28,19 +28,13 @@ export class ZoneComponent extends BaseComponent {
 
     private loadElements(elements: SubZoneModel[]): void {
         if (elements && elements !== this.elements) {
-            let idx = 0
+            this.clearChildren('subzone-collection')
             elements.forEach(model => {
-                const createNew = idx >= this.elements.length
-                const mustReplace = !createNew && model !== this.elements[idx]
-                if (createNew || mustReplace) {
-                    const component = this.factory.create(model)
-                    if (component) {
-                        this.insertOrReplace(idx, component, 'subzone-collection')
-                    }
+                const component = this.factory.create(model)
+                if (component) {
+                    this.appendChild(component, 'subzone-collection')
                 }
-                idx++
             })
-            this.removeOffSetElements(this.elements.length - elements.length)
             this.elements = elements
         }
     }
