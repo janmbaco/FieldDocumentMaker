@@ -15788,6 +15788,7 @@ class DayComponent extends day_base_component_1.DayBaseComponent {
         super(model.type);
         this.day = null;
         this.dayClick = () => { };
+        this.day = model.number;
         this.Value = (model.number) ? Math.trunc(model.number).toString() : '';
         this.OnRender.push(() => {
             if (model.isCurrentDay) {

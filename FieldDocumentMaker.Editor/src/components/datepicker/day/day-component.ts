@@ -10,6 +10,7 @@ export class DayComponent extends DayBaseComponent implements IDayComponent {
 
     constructor(model: DayModel) {
         super(model.type)
+        this.day = model.number
         this.Value = (model.number) ? Math.trunc(model.number).toString() : ''
         this.OnRender.push(() => {
             if (model.isCurrentDay) {
